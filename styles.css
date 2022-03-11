@@ -1,0 +1,186 @@
+*{
+    padding:0;
+    margin:0;
+    font-family: 'Mukta', sans-serif;
+}
+body{
+    width: 100%;
+}
+header{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    height: min-content;
+    width: 98%;
+    border-bottom:1px solid rgb(146, 146, 146);
+    box-shadow: 0px 0px 3px rgb(100, 99, 99);
+}
+nav{
+    display:flex;
+    flex-direction: row;
+}
+ul{
+    position: relative;
+    top: 15px;
+    display:flex;
+    float:right;
+}
+li{
+    margin-left:10px;
+    margin-right:10px;
+    list-style-type: none;
+}
+a{
+    text-decoration:none;
+    color:rgb(0, 0, 0);
+}
+a:hover{
+    color:rgb(128, 128, 128);
+}
+#home{
+    margin-right: 20px;
+    margin-left:30px;
+}
+#home:hover{
+    color:rgb(99, 99, 99);
+    cursor:pointer;
+}
+#intro_paragraph{
+    margin-top: 120px;
+    margin-bottom: 20px;
+    margin-left: 10%;
+    margin-right: 20px;
+}
+#leaflet_icon{
+    border-bottom:1px solid black;
+    box-shadow: 0px 0px 12px rgb(100, 99, 99);
+}
+#about_leaflet{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.project_icon{
+    width: 150px;
+    background-color:white;
+    height: 150px;
+    border:1px solid rgb(224, 224, 224);
+    border-radius: 2px;
+    box-shadow: 0px 0px 4px rgb(100, 99, 99);
+    transition: transform .2s; /* Animation */
+    margin:10px;
+    
+}
+.project_icon:hover{
+    transform: scale(1.2);
+    cursor:pointer;
+}
+#projects_container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: inline-flex;
+    float:right;
+    margin-right: 14%;
+}
+#projects_icons_container{
+    display:inline-flex;
+    margin-left:-108px;
+    margin-top:20px;
+}
+#contact_me{
+    margin-top: -200px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    width: 140px;
+    float:right;
+    margin-right: 47%;
+}
+#contacts{
+    text-align: center;
+    float:none;
+}
+.current_container .progress{
+    background: rgba(103, 177, 109, 0.4);
+    /* width: 200px; */
+    /* margin-left: 20%; */
+    border-radius: 4px;
+}
+.current_container{
+    width: 60%;
+    border:1px solid rgb(214, 214, 214);
+    border-radius: 4px;
+    margin-left: 20%;
+    margin-bottom: 10px;
+}
+#form_container{
+    float:right;
+    margin-right: 25%;
+    margin-top:-300px;
+}
+#form_container input{
+    width: 350px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(199, 199, 199);
+    height: 28px;
+    padding-left:10px;
+    border-radius: 4px;
+}
+#form_container input:focus{
+    outline: none;
+}
+
+#form_container textarea{
+    width: 350px;
+    /* height: 100px; */
+    border: 1px solid rgb(199, 199, 199);
+    border-radius: 4px;
+    resize:none;
+    padding-top:5px;
+    padding-left:10px;
+}
+#form_container textarea{
+    outline: none;
+}
+#form_container button{
+    background:green;
+    color:white;
+    border:none;
+    font-weight:bold;
+    height: 30px;
+    width: 100px;
+    border-radius: 10px;
+}
+#form_container button:hover{
+    background:rgb(53, 155, 62);
+    cursor:pointer;
+}
+#form_container button:active{
+    background-color:rgb(43, 97, 47);
+    /* font-size:12px; */
+}
+#cards_container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    display:inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.card{
+    width: 300px;
+    height: 220px;
+    border:1px solid rgb(224, 224, 224);
+    border-radius: 2px;
+    box-shadow: 0px 0px 1px rgb(100, 99, 99);
+    transition: transform .2s; /* Animation */
+    margin:10px;
+}
+.card p{
+    margin:10px;
+}
+.card h2, span{
+    margin-left:10px;
+}

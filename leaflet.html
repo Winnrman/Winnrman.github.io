@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>LEAFLET | Projects</title>
+</head>
+
+<body>
+    <header style="display: inline-flex">
+        <h1 id="home"><a href="./home.html">Andre Schoolman</a></h1>
+        <nav>
+            <ul>
+                <!-- <li><a href="home.html">Home</a></li> -->
+                <!-- <li><a href="about.html">About</a></li> -->
+                <li><a href="home.html#projects">Projects</a></li>
+                <li><a href="home.html#contact_me">Links / Contact</a></li>
+                <li>
+                    <!--file download for resume-->
+                    <a href="./New_Resume.pdf" download="resume.pdf">Resume</a>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+    <div id="leaflet_icon">
+        <img src="./img/logo_big.png" alt="leaflet icon"
+            style="margin: 0 auto; display:block; width: 200px; height: 200px;">
+        <h1 style="text-align:center; font-weight: bold; color: green;">L E A F L E T</h1>
+    </div>
+    <span style="display: inline-block;">
+        <div style="width: 25%; margin-left: 20%; " id="about_leaflet">
+            <p>Leaflet is a blog / social media platform that I've been working on for a couple of years, designed
+                around
+                sharing what you want, and nothing you don't. Security is built in, and comes first. I designed it
+                because
+                I wanted a place to write about my life and keep a log of my actions, so I could look back on past
+                events,
+                kind of like a personal journal.<br><br>
+                I've been inspired by other sites like Reddit and Tumblr, but I wanted to make a place for me to share
+                my
+                ideas where they would be safe and where it would be a positive experience to go onto the site.
+                I've added countless features which are listed below, and I am constantly working on it to improve it
+                and
+                make it better for myself, with everyone else in mind.
+            </p>
+        </div>
+
+        <div id="form_container">
+            <input id="blog_title" type="text" placeholder="Post Title">
+            <br>
+            <textarea cols='63' rows='8' id="blog_content" placeholder="Post Content"></textarea>
+            <br>
+            <button id="submit_blog">Submit</button>
+        </div>
+        <h2 style="margin-left: 30%; text-decoration: overline" id="key_features">Key Features</h2>
+        <div style="margin-left: 26%" id="cards_container">
+            <div class="card" id="card1">
+                <h2>Security</h2>
+                <span style="display:inline">
+                    <p>Leaflet was designed with security in mind, so when you make a post private, it stays </p><span
+                        style="font-weight: bold; color: green">private</span>
+                    <p>and only you can see it.</p>
+                </span>
+
+            </div>
+            <div class="card" id="card1">
+                <h2>Safety</h2>
+
+                <p>Leaflet is designed to be safe, so you can't be a victim of a malicious post. If one is seen, it
+                    will be taken down and the user responsible will be banned.<span
+                        style="margin-left: 5px !important; font-weight: bold; color: red">No
+                        exceptions.</span></p>
+            </div>
+            <div class="card" id="card1">
+                <h2>Privacy</h2>
+
+                <p>Leaflet is designed to be private, so you can't see what other people have posted if it's private. If
+                    you want to
+                    see what other people have posted, you have to be logged in and you'll only see posts they've made
+                    <span style="margin-left: 5px !important; font-weight: bold; color: rgb(33, 2, 168)">public</span>.
+                </p>
+            </div>
+        </div>
+        <h3 style="text-align:center; text-decoration: overline;" id="links">Links</h3>
+        <div id="links_container">
+            <div class="link_container">
+                <a style="margin-left: 49%; color: green; font-weight: bold"
+                    href="https://rocky-woodland-42803.herokuapp.com/login">Visit</a>
+            </div>
+    </span>
+
+</body>
