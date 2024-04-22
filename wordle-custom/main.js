@@ -177,6 +177,26 @@ function updateLength(){
     console.log("updateLength")
 }
     
+function showKeys(){
+    console.log('showKeys')
+    document.getElementById("key_body").style.visibility = "visible";
+    document.getElementById("key_body").style.height = "auto";
+    document.getElementById("keyButton").innerHTML = "Hide"
+}
+
+function handleKeyToggle(){
+    console.log('handleKeyToggle')
+    if(document.getElementById("key_body").style.visibility == "hidden"){
+        showKeys();
+    }
+    else{
+    document.getElementById("key_body").style.visibility = "hidden";
+    document.getElementById("key_body").style.height = "0px";
+    document.getElementById("keyButton").innerHTML = "Show"
+
+    }
+}
+
 function createRow(word){
 
     if(word == ""){
