@@ -90,13 +90,13 @@ let wordLength = 5;
 //define the colors for the boxes based on the length from the initial word
 let colors = [
     "bg-slate-100",
-    "bg-slate-200",
+    // "bg-slate-200",
     "bg-slate-300",
-    "bg-slate-400",
-    "bg-slate-500",
+    // "bg-slate-400",
+    // "bg-slate-500",
     "bg-slate-600",
-    "bg-slate-700",
-    "bg-slate-800",
+    // "bg-slate-700",
+    // "bg-slate-800",
     "bg-slate-900",
 ]
 
