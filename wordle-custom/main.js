@@ -4,7 +4,7 @@ let initialWord = "HELLO";
 let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 //define a list of words to use which are 5 letters long
-const words = [
+const fiveWords = [
     'ZEBRA', 'XYLOL', 'WRATH', 'VROOM', 'ULTRA', 'TWAIN', 'SWOON', 'RIVEN', 'QUART', 'PRISM',
     'OPINE', 'NYMPH', 'MYTH', 'LYCEE', 'LYMPH', 'KNOLL', 'JUNTA', 'IMPEL', 'HUNCH', 'GYPSY',
     'FROND', 'EPHOD', 'DINGO', 'COMET', 'BLIMP', 'AMITY', 'AGLOW', 'YAHOO', 'ZALMO', 'XEBEC',
@@ -19,10 +19,67 @@ const words = [
     'ADORE', 'YAMEN', 'YAWNS', 'ZAMAN', 'XENON', 'WRICK', 'VOZHD', 'UNWIN', 'TWINK', 'SWINE',
     'RIVEN', 'QUIRT', 'PYLON', 'OVOID', 'NYJAH', 'MOITY', 'LYNXO', 'KVASS', 'JOCKO', 'IMBUE',
     'HOVER', 'GUYOT', 'FRITH', 'ENOKI', 'DENIM', 'COVEN', 'BUXOM', 'ABACA', 'ADORE', 'YAMEN',
-
   ];
 
-let finalWord = words[Math.floor(Math.random() * words.length)];
+  const sixWords = [
+    "GUITAR", "BANANA", "PURPLE", "COWBOY", "JACKET", "ZOMBIE", "MONKEY", "RABBIT", "YELLOW", "ORANGE",
+    "PUDDLE", "BOTTLE", "CANDLE", "WINDOW", "SPIDER", "MUFFIN", "JUNGLE", "PUZZLE", "RIDDLE", "JIGGLE",
+    "HUMBLE", "CRUMBS", "BRIDGE", "MIRROR", "TURTLE", "SNOWFL", "PIRATE", "CHEESE", "APPLES", "BUBBLE",
+    "FIZZLE", "SIZZLE", "SIZZLY", "CRAZED", "FAIRLY", "BURGER", "WIZARD", "SPIRAL", "JOKING", "CRAVAT",
+    "PLAGUE", "GARDEN", "BRANCH", "SPRINK", "WIGGLE", "JIGSAW", "FRIDGE", "ZEBRA", "YOGURT", "CRINGE",
+    "CRUNCH", "FLIGHT", "OYSTER", "RAVING", "PANCAK", "YAKIMA", "WALLET", "JACKAL", "JACKET", "TICKLE",
+    "TICKLY", "HICCUP", "SNICKY", "SNICKY", "SPRIGS", "SPRITZ", "WHIRLY", "BREEZY", "ZIPPED", "ZIPPER",
+    "PEPPER", "COOKIE", "MOBILE", "UNIQUE", "TANGLE", "GALLOP", "TUMBLE", "RUMBLE", "NINJAS", "ROBOTS",
+    "ZOOMED", "ZIPPED", "QUIRKY", "HOCKEY", "RHYTHM", "WIZARD", "FIZZLE", "SPROUT", "SPRINT", "MUFFIN",
+    "JUGGLE", "JUMBLE", "CIRCUS", "BASKET", "ZOMBIE", "BUBBLE", "SIZZLE", "JIGGLE", "JINGLE", "WIGGLE",
+    "DRAGON", "RABBIT", "TURTLE", "CACTUS", "JACKET", "SIZZLY", "JIGSAW", "SPIDER", "MIRROR", "SPRINK",
+    "JUMPER", "CRAVAT", "PLAGUE", "CRUNCH", "WIZARD", "WHIRLY", "JOKING", "BREEZY", "HUMBLE", "GUITAR",
+    "PURPLE", "MONKEY", "WINDOW", "COWBOY", "BRIDGE", "CRUMBS", "PUZZLE", "CHEESE", "PIRATE", "JUNGLE",
+    "PUDDLE", "ZEBRA", "MUFFIN", "FRIDGE", "BOTTLE", "YOGURT", "JOKING", "HUMBLE", "CRUNCH", "PIRATE",
+    "CANDLE", "RIDDLE", "SPRIGS", "SPRITZ", "BRANCH", "SPRINT", "PLAGUE", "CRINGE", "HICCUP", "SNICKY",
+    "SNICKY", "RUMBLE", "TANGLE", "GALLOP", "TUMBLE", "NINJAS", "ROBOTS", "ZOOMED", "ZIPPED", "QUIRKY",
+    "HOCKEY", "RHYTHM", "WIZARD", "FIZZLE", "SPROUT", "MIRROR", "SPIDER", "SPRINK", "BASKET", "JUGGLE",
+    "JUMBLE", "CIRCUS", "BUBBLE", "SIZZLE", "JIGGLE", "JINGLE", "WIGGLE", "DRAGON", "RABBIT", "TURTLE",
+    "CACTUS", "JACKET", "SPRINT", "SIZZLY", "JIGSAW", "ZOMBIE", "WINDOW", "SPRIGS", "WIGGLE", "WHIRLY",
+    "SPRITZ", "BRIDGE", "CRUMBS", "JUMPER", "CRAVAT", "PLAGUE", "CRUNCH", "WIZARD", "BREEZY", "GUITAR",
+    "PURPLE", "MONKEY", "WINDOW", "COWBOY", "CHEESE", "PIRATE", "PUZZLE", "JUNGLE", "PUDDLE", "ZEBRA",
+    "MUFFIN", "FRIDGE", "BOTTLE", "YOGURT", "CRINGE", "CRUNCH", "HUMBLE", "JOKING", "BRANCH", "SPRINK",
+    "CANDLE", "RIDDLE", "SPRIGS", "SPRITZ", "TANGLE", "GALLOP", "TUMBLE", "NINJAS", "ROBOTS", "ZOOMED",
+    "ZIPPED", "QUIRKY", "HOCKEY", "RHYTHM", "WIZARD", "FIZZLE", "SPROUT", "MIRROR", "SPIDER", "SPRINK",
+    "JUGGLE", "JUMBLE", "CIRCUS", "BASKET", "ZOMBIE", "BUBBLE", "SIZZLE", "JIGGLE", "JINGLE", "WIGGLE",
+    "DRAGON", "RABBIT", "TURTLE", "CACTUS", "JACKET", "SIZZLY", "JIGSAW", "SPRINT", "MUFFIN", "MIRROR",
+  ];
+
+  const sevenWords = [
+    "WIREFOX", "BUZZARD", "JETPACK", "BUCKETS", "SPRINKS", "ZESTFUL", "SHADOWS", "MUFFINS", "RUBIKSC", "WIZARDS",
+    "PUZZLES", "JUMPIES", "GALLOPS", "TANGLED", "SPRITES", "ZIGZAGS", "QUICKLY", "HISTORY", "FLICKER", "CHIMNEY",
+    "JOGGING", "BUBBLES", "TICKLES", "WIGGLES", "JUGGLES", "HACKERS", "QUARREL", "FIZZLES", "RUMPLES", "CRAVATS",
+    "CLOUDED", "BRIDGES", "GARDENS", "CRUMPLE", "CRAFTED", "PLAGUED", "SPRINKY", "TICKLED", "TUMBLER", "WALRUSC",
+    "DRAGONS", "RABBITS", "TURTLES", "CACTUSC", "JACKETS", "SIZZLES", "JIGSAWS", "SPRINTS", "MUFFINS", "ZEBRASC",
+    "DIZZILY", "CRISPED", "ZESTIER", "QUIRKED", "HOCKEYS", "RHYTHMS", "WIZARDS", "FIZZLED", "SPROUTS", "MIRRORS",
+    "SPIDERS", "SPRINKS", "BASKETS", "ZOMBIES", "BUBBLES", "SIZZLES", "JIGGLES", "JINGLES", "WIGGLES", "DRAGONS",
+    "RABBITS", "TURTLES", "CACTUSC", "JACKETS", "SIZZLYS", "JIGSAWS", "SPRINTS", "MUFFINS", "ZEBRASC", "JUMPERS",
+    "CRAVATS", "PLAGUED", "CRUNCHS", "WIZARDS", "WHIRLYS", "JOKINGS", "BREEZYS", "HUMBLES", "GUITARS", "PURPLES",
+    "MONKEYS", "WINDOWC", "COWBOYS", "CHEESES", "PIRATES", "PUZZLES", "JUNGLES", "PUDDLES", "ZEBRAS", "MUFFINS",
+    "FRIDGES", "BOTTLES", "YOGURTS", "CRINGES", "CRUNCHS", "HUMBLES", "JOKINGS", "BRANCHS", "SPRINKS", "CANDLES",
+    "RIDDLES", "SPRIGGS", "SPRITZS", "BRANCHS", "SPRINTS", "PLAGUES", "CRINGES", "HICCUPS", "SNICKYS", "SNICKYS",
+    "RUMBLES", "TANGLES", "GALLOPS", "TUMBLES", "NINJASS", "ROBOTSS", "ZOOMEDS", "ZIPPEDS", "QUIRKYS", "HOCKEYS"
+  ];
+
+  const eightWords = [
+    "JUMBLING", "CIRCUITS", "BASKETRY", "ZOMBIFIE", "BUBBLING", "SIZZLING", "JIGGLING", "JINGLING", "WIGGLING", "DRAGONET",
+    "RABBITRY", "TURTLING", "CACTUSES", "JACKETRY", "SIZZLING", "JIGSAWED", "SPRINTER", "MUFFLING", "ZEBRASIS", "JUMPINGS",
+    "CRAVATED", "PLAGUING", "CRUNCHER", "WIZARDLY", "WHIRLIES", "JOKINGLY", "BREEZING", "HUMBLING", "GUITARED", "PURPLING",
+    "MONKEYED", "WINDOWED", "COWBOYED", "CHEESEED", "PIRATING", "PUZZLING", "JUNGLING", "PUDDLING", "ZEBRASES", "MUFFLINS",
+    "FRIDGING", "BOTTLING", "YOGURTED", "CRINGING", "CRUNCHER", "HUMBLING", "JOKINGLY", "BRANCHES", "SPRINKER", "CANDLING",
+    "RIDDLESS", "SPRIGGED", "SPRITZED", "BRANCHES", "SPRINTER", "PLAGUING", "CRINGING", "HICCUPED", "SNICKING", "SNICKING",
+    "RUMBLING", "TANGLING", "GALLOPED", "TUMBLING", "NINJASES", "ROBOTICS", "ZOOMEDIN", "ZIPPINGS", "QUIRKIER", "HOCKEYED",
+    "RHYTHMIC", "WIZARDRY", "FIZZLING", "SPROUTED", "MIRRORLY", "SPIDERTY", "SPRINKLY", "BASKETED", "ZOMBIFYS", "BUBBLIES",
+    "SIZZLIER", "JIGGLIER", "JINGLIER", "WIGGLIER", "DRAGONED", "RABBITED", "TURTLELY", "CACTUSED", "JACKETED", "SIZZLERS",
+    "JIGSAWED", "SPRINTED", "MUFFLINS", "ZEBRASES", "JUMPINGS", "CRAVATES", "PLAGUERS", "CRUNCHES", "WIZARDLY", "WHIRLIES",
+    "JOKINGLY", "BREEZING", "HUMBLING", "GUITARED", "PURPLING", "MONKEYED", "WINDOWED", "COWBOYED", "CHEESEED", "PIRATING",
+    "PUZZLING", "JUNGLING", "PUDDLING", "ZEBRASES", "MUFFLINS", "FRIDGING", "BOTTLING", "YOGURTED", "CRINGING", "CRUNCHER"
+  ];
 
 let guesses = 0;
 
@@ -42,6 +99,24 @@ let colors = [
     "bg-slate-800",
     "bg-slate-900",
 ]
+
+let finalWord = "";
+
+switch(wordLength) {
+    case 5:
+        finalWord = fiveWords[Math.floor(Math.random() * fiveWords.length)];
+    break;
+    case 6:
+        finalWord = sixWords[Math.floor(Math.random() * sixWords.length)];
+    break;
+    case 7:
+        finalWord = sevenWords[Math.floor(Math.random() * sevenWords.length)];
+    break;
+    case 8:
+        finalWord = eightWords[Math.floor(Math.random() * eightWords.length)];
+    break;
+
+}
 
 //get the distance between each letter of the initial word and the final word
 let distances = [];
@@ -183,4 +258,18 @@ function updateLengthCalled(){
     wordLength = document.getElementById("lengthInput").value;
     console.log(wordLength)
     updateGuessBoard()
+}
+
+document.getElementById("in").addEventListener("keyup", checkInput);
+
+function checkInput(){
+
+    console.log('checkInput')
+    //check to make sure the length of the input is the same as the length of the word
+    let input = document.getElementById("in").value;
+    if (input.length > wordLength){
+        //cut the input
+        console.log('cutting')
+        document.getElementById("in").value = input.substring(0, wordLength);
+    }
 }
