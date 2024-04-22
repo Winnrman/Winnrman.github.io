@@ -178,6 +178,16 @@ function updateLength(){
 }
     
 function createRow(word){
+
+    if(word == ""){
+        return;
+    }
+
+    if(word.length < wordLength){
+        alert("Word is too short");
+        return;
+    }
+
     //clear the distances
     distances = [];
 
