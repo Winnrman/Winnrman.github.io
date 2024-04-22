@@ -89,15 +89,17 @@ let wordLength = 5;
 
 //define the colors for the boxes based on the length from the initial word
 let colors = [
-    "bg-slate-100",
+    "bg-blue-100",
     // "bg-slate-200",
-    "bg-slate-300",
+    "bg-blue-300",
     // "bg-slate-400",
-    // "bg-slate-500",
-    "bg-slate-600",
-    // "bg-slate-700",
+    "bg-blue-500",
+    // "bg-blue-600",
+    "bg-blue-700",
     // "bg-slate-800",
-    "bg-slate-900",
+    "bg-blue-900",
+    "bg-blue-950",
+    "bg-slate-700"
 ]
 
 let finalWord = "";
@@ -234,10 +236,9 @@ function createRow(word){
             color = "bg-green-200";
         }
 
-        box.className = `box w-16 h-16 text-center font-semibold text-2xl p-4 ${color}`;
-        if (color.includes("bg-slate-")) {
-            box.classList.add("text-white");
-        }
+        box.className = `box w-16 h-16 text-center text-white font-semibold text-2xl p-4 ${color}`;
+        
+        
         box.innerHTML = letter;
         row.appendChild(box);
         document.getElementById("in").value = "";
