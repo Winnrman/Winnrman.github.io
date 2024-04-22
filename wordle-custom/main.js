@@ -163,7 +163,7 @@ function updateGuessBoard(){
         row.className = "flex flex-row gap-2 my-2";
         for (let j = 0; j < wordLength; j++) {
             let box = document.createElement("div");
-            box.className = "box w-12 h-12 text-center font-semibold text-2xl p-2 bg-slate-300";
+            box.className = "box sm:w-16 sm:h-16 h-12 w-12 text-center font-semibold text-2xl p-2 bg-slate-300";
             row.appendChild(box);
         }
         document.getElementById("guesses").appendChild(row);
@@ -234,7 +234,7 @@ function createRow(word){
             color = "bg-green-200";
         }
 
-        box.className = `box w-12 h-12 text-center font-semibold text-2xl p-2 ${color}`;
+        box.className = `box w-16 h-16 text-center font-semibold text-2xl p-4 ${color}`;
         if (color.includes("bg-slate-")) {
             box.classList.add("text-white");
         }
