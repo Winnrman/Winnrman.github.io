@@ -5,21 +5,18 @@ let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 //define a list of words to use which are 5 letters long
 const fiveWords = [
-    'ZEBRA', 'XYLOL', 'WRATH', 'VROOM', 'ULTRA', 'TWAIN', 'SWOON', 'RIVEN', 'QUART', 'PRISM',
-    'OPINE', 'NYMPH', 'MYTH', 'LYCEE', 'LYMPH', 'KNOLL', 'JUNTA', 'IMPEL', 'HUNCH', 'GYPSY',
-    'FROND', 'EPHOD', 'DINGO', 'COMET', 'BLIMP', 'AMITY', 'AGLOW', 'YAHOO', 'ZALMO', 'XEBEC',
-    'WRACK', 'VROOM', 'UMIAK', 'TWANG', 'SWART', 'RHINO', 'QUEAN', 'PROMO', 'OVERT', 'NYLGH',
-    'MZUNB', 'LYART', 'LYPSK', 'KEEST', 'JINNI', 'IODIC', 'HUNKY', 'GULCH', 'FRUMP', 'ENAMI',
-    'DEMIT', 'CAPON', 'BAWDY', 'APORT', 'AIDAS', 'YODEL', 'YAWLS', 'ZAMAN', 'XYSTL', 'WREST',
-    'VOZHD', 'UNZIP', 'TWILL', 'SWISH', 'RIVEN', 'QUERY', 'PYRIC', 'OVOID', 'NYMIL', 'MOITY',
-    'LYNXO', 'KVASS', 'JOCKO', 'IMBUE', 'HOVER', 'GUYOT', 'FRITH', 'ENOKI', 'DENIM', 'COVEN',
-    'BUXOM', 'ABACA', 'ADORE', 'YAMEN', 'YAWNS', 'ZAMAN', 'XENON', 'WRICK', 'VOZHD', 'UNWIN',
-    'TWINK', 'SWINE', 'RIVEN', 'QUIRT', 'PYLON', 'OVOID', 'NYJAH', 'MOITY', 'LYNXO', 'KVASS',
-    'JOCKO', 'IMBUE', 'HOVER', 'GUYOT', 'FRITH', 'ENOKI', 'DENIM', 'COVEN', 'BUXOM', 'ABACA',
-    'ADORE', 'YAMEN', 'YAWNS', 'ZAMAN', 'XENON', 'WRICK', 'VOZHD', 'UNWIN', 'TWINK', 'SWINE',
-    'RIVEN', 'QUIRT', 'PYLON', 'OVOID', 'NYJAH', 'MOITY', 'LYNXO', 'KVASS', 'JOCKO', 'IMBUE',
-    'HOVER', 'GUYOT', 'FRITH', 'ENOKI', 'DENIM', 'COVEN', 'BUXOM', 'ABACA', 'ADORE', 'YAMEN',
-  ];
+    'ZEBRA', 'WRATH', 'VROOM', 'ULTRA', 'SWOON', 'RIVEN', 'QUART', 'PRISM',
+    'NYMPH', 'LYCEE', 'LYMPH', 'KNOLL', 'HUNCH', 'GYPSY',
+    'DINGO', 'COMET', 'BLIMP', 'AMITY', 'YAHOO', 
+    'WRACK', 'VROOM', 'TWANG', 'RHINO', 'QUEEN', 'PROMO', 'OVERT',
+    'HUNKY', 'GULCH',
+    'BAWDY', 'ABORT', 'YODEL',
+    'UNZIP', 'SWISH', 'QUERY',
+    'IMBUE', 'HOVER', 'DENIM', 'COVEN',
+    'BUXOM', 'ABACA', 'ADORE', 'YAWNS', 'XENON',
+    'TWINK', 'SWINE', 'PYLON', 'AWAKE','FLIES',"SHOWN",'CROWN','DROWN','BROWN','STOLE','ALIVE','GNOME'
+    
+]
 
   const sixWords = [
     "GUITAR", "BANANA", "PURPLE", "COWBOY", "JACKET", "ZOMBIE", "MONKEY", "RABBIT", "YELLOW", "ORANGE",
@@ -236,7 +233,7 @@ function createRow(word){
             color = "bg-green-200";
         }
 
-        box.className = `box w-16 h-16 text-center text-white font-semibold text-2xl p-4 ${color}`;
+        box.className = `box sm:w-16 sm:h-16 w-12 h-12 text-center text-white font-semibold text-2xl sm:p-4 p-2 ${color}`;
         
         
         box.innerHTML = letter;
