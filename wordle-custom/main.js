@@ -246,10 +246,13 @@ function createRow(word){
             color = "bg-green-200";
         }
 
-        box.className = `box sm:w-16 sm:h-16 w-12 h-12 text-center text-white font-semibold text-2xl sm:p-4 p-2 ${color}`;
+        box.className = `box sm:w-16 sm:h-16 w-12 h-12 text-center text-white font-semibold text-2xl sm:p-2 ${color}`;
         
+        var innerDiv = document.createElement("div");
+        innerDiv.className = "flex flex-col h-full";
+        innerDiv.innerHTML = letter + " " + `<span class="text-xs text-gray-100">${alphabet.indexOf(letter)+1}</span>`
         
-        box.innerHTML = letter;
+        box.appendChild(innerDiv);
         row.appendChild(box);
         document.getElementById("in").value = "";
     }
