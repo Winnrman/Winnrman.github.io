@@ -101,22 +101,6 @@ let colors = [
 
 let finalWord = "";
 
-switch(wordLength) {
-    case 5:
-        finalWord = fiveWords[Math.floor(Math.random() * fiveWords.length)];
-    break;
-    case 6:
-        finalWord = sixWords[Math.floor(Math.random() * sixWords.length)];
-    break;
-    case 7:
-        finalWord = sevenWords[Math.floor(Math.random() * sevenWords.length)];
-    break;
-    case 8:
-        finalWord = eightWords[Math.floor(Math.random() * eightWords.length)];
-    break;
-
-}
-
 //get the distance between each letter of the initial word and the final word
 let distances = [];
 for (let i = 0; i < initialWord.length; i++) {
@@ -149,6 +133,8 @@ givenDiv.className = "flex flex-row gap-2";
 //     givenDiv.appendChild(box);
 // });
 
+
+
 function updateGuessBoard(){
 
     guesses = 0;
@@ -167,9 +153,36 @@ function updateGuessBoard(){
         }
         document.getElementById("guesses").appendChild(row);
     }
+    console.log(finalWord)
+
+}
+
+function updateGuessCalled(){
+    //this function is called when the user changes the length of the word
+    maxGuesses = document.getElementById("guessesInput").value;
+    updateGuessBoard();
+}
+
+function updateLengthCalled(){
+    wordLength = document.getElementById("lengthInput").value;
+    if(wordLength == 5){
+        finalWord = fiveWords[Math.floor(Math.random() * fiveWords.length)];
+    }
+    else if(wordLength == 6){
+        finalWord = sixWords[Math.floor(Math.random() * sixWords.length)];
+    }
+    else if(wordLength == 7){
+        finalWord = sevenWords[Math.floor(Math.random() * sevenWords.length)];
+    }
+    else if(wordLength == 8){
+        finalWord = eightWords[Math.floor(Math.random() * eightWords.length)];
+    }
+    console.log(wordLength)
+    updateGuessBoard()
 }
 
 updateGuessBoard();
+updateLengthCalled();
 
 function updateLength(){
     //clear the word
@@ -275,18 +288,6 @@ document.getElementById("in").addEventListener("keyup", function (event) {
         createRow(word)
     }
 });
-
-function updateGuessCalled(){
-    //this function is called when the user changes the length of the word
-    maxGuesses = document.getElementById("guessesInput").value;
-    updateGuessBoard();
-}
-
-function updateLengthCalled(){
-    wordLength = document.getElementById("lengthInput").value;
-    console.log(wordLength)
-    updateGuessBoard()
-}
 
 document.getElementById("in").addEventListener("keyup", checkInput);
 
