@@ -8,15 +8,29 @@
 </head>
 <body>
     <div class = "w-screen h-full bg-slate-100">
+        <nav class = "absolute w-screen p-12">
+            <ul class = "flex flex-row items-center justify-center gap-4">
+                <li class = "font-light hover:font-semibold text-sm">
+                    <a href = "#">ABOUT</a></li>
+                <li class = "font-light hover:font-semibold text-sm"><a href = "#">PROJECTS</a></li>
+                <li class = "font-light hover:font-semibold text-sm"><a href = "#">SKILLS</a></li>
+                <li class = "font-light hover:font-semibold text-sm"><a href = "#">PROJECTS</a></li>
+                <li class = "font-light hover:font-semibold text-sm"><a href = "#">PHILOSOPHY</a></li>
+                <li class = "font-light hover:font-semibold text-sm"><a href = "#">CONTACT</a></li>
+            </ul>
+        </nav>
+
         <div class = "flex h-auto flex-col">
-    <div class = "bg-slate-800 h-64 flex flex-col px-8 pt-16 text-white">
-        <p class = "font-semibold text-lg">NAME</p>
-        <h1 class = "font-semibold text-6xl">Andre Schoolman</h1>
-        <p class = "text-slate-300 text-xs font-semibold uppercase">Self-taught programmer looking for job, internship, or experience.</p>
+    <div class = "bg-slate-100 h-screen flex  flex-col items-center justify-center">
+        <!-- <p class = "font-semibold text-lg">NAME</p> -->
+         <img src = "./selfie.jpeg" class = "rounded-full w-32 m-4 shadow-xl">
+        <h1 class = "font-semibold text-slate-900 text-6xl">Andre Schoolman</h1>
+        <!-- <p class = "text-slate-300 text-sm font-semibold uppercase">Self-taught programmer looking for job, internship, or experience.</p> -->
+        <p class = "text-slate-900 text-sm font-semibold uppercase">Full-Stack Developer. Designer. Creator.</p>
     </div>
     <div class = "p-8 gap-4 flex flex-col pt-8">
     <div>
-    <p class = "font-semibold text-lg">WHO I AM</p>
+    <p class = "font-black text-lg">WHO I AM</p>
     <p class = "font-light text-xs pb-2 italic">Click to expand sections</p>
     <!-- <h1 class = "font-light text-sm">Frontend & Backend Developer, UX/ UI Designer, AI Enthusiast, Apple Fanatic, Gamer</h1> -->
     
@@ -43,19 +57,22 @@
 </div>
 
     <div>
-    <p class = "font-semibold text-lg">GOAL</p>
+    <p class = "font-black text-lg">GOAL</p>
     <h1 class = "font-light text-sm">A job working to help assist you in making your company the best it can be.</h1>
     </div>
 
-    <div>
-    <p class = "font-semibold text-lg">CURRENTLY LEARNING</p>
-    <div class = "bg-slate-200 w-full sm:w-fit p-2">
-        <h1 class = "font-light text-2xl">Operating Systems</h1>
-        <p class = "text-sm font-light">Bootloaders, Kernels, C, Memory Addresses, QEMU, NASM</p>
-        <!-- <div class = "rounded-full w-full bg-slate-300 h-2">
-            <div class = "bg-green-600 w-2/3 p-1 rounded-md"></div>
-        </div> -->
-    </div>
+    <p class = "font-black text-lg">CURRENTLY LEARNING</p>
+
+    <div class = "flex flex-row gap-2">
+        <div class = "bg-slate-200 w-full sm:w-fit p-2">
+            <h1 class = "font-light text-xl">Operating Systems</h1>
+            <p class = "text-sm font-light">Bootloaders, Kernels, C, Memory Addresses, QEMU, NASM</p>
+        </div>
+
+        <div class = "bg-slate-200 w-full sm:w-fit p-2">
+            <h1 class = "font-light text-xl">Docker</h1>
+            <p class = "text-sm font-light">Containers, Load balancers, Scalablity 
+        </div>
     
     </div>
     
