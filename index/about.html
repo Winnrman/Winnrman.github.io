@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About — Index</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    .inter-700 { font-family: "Inter", sans-serif; font-weight: 700; }
+    .inter-600 { font-family: "Inter", sans-serif; font-weight: 600; }
+    .inter-400 { font-family: "Inter", sans-serif; font-weight: 400; }
+    .cormorant { font-family: "Cormorant", serif; font-weight: 800; }
+    .cormorant-italic { font-family: "Cormorant", serif; font-weight: 800; font-style: italic; }
+    .playfair-display-light { font-family: "Playfair Display", serif; font-weight: 300; }
+
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: flex; }
+  </style>
+  <body>
+    <div class="relative w-screen min-h-screen">
+
+      <div class="absolute inset-x-0 top-0 -z-10 h-full bg-slate-100"></div>
+
+      <div class="relative z-10">
+
+        <!-- ── HEADER ── -->
+        <header class="w-full bg-teal-900 p-3 px-6 flex flex-row items-center justify-between">
+          <a href="/index.html" class="font-bold text-white text-2xl sm:text-4xl inter-700 flex flex-row items-center">
+            Index
+            <span class="cormorant text-sm sm:text-lg pt-1 pl-2 text-slate-300">
+              <span class="text-white">|</span> Intelligent file search
+            </span>
+          </a>
+          <nav class="hidden md:flex flex-row items-center gap-6 font-semibold text-slate-200">
+            <a class="text-white border-b border-white/50 transition-colors" href="./about.html">About</a>
+            <a class="hover:text-white transition-colors" href="./FAQ.html">FAQs</a>
+            <a class="flex flex-row hover:text-white items-center gap-1 transition-colors" href="/waitlist">
+              Get Started
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 pt-1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </nav>
+          <button id="hamburger" class="md:hidden text-white p-1" aria-label="Toggle menu">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          </button>
+        </header>
+
+        <div id="mobile-menu" class="flex-col bg-teal-900/95 md:hidden px-6 py-4 gap-4 font-semibold text-slate-200 text-lg">
+          <a class="text-white" href="">About</a>
+          <a class="hover:text-white transition-colors" href="/FAQ.html">FAQs</a>
+          <a class="flex flex-row items-center gap-1 hover:text-white transition-colors" href="/waitlist">
+            Get Started
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- ── HERO ── -->
+        <section class="flex flex-col pt-20 sm:pt-32 w-full text-center items-center select-none px-4 pb-16">
+          <p class="text-teal-300 text-sm inter-600 tracking-widest uppercase mb-4">Our Story</p>
+          <h1 class="text-4xl sm:text-6xl inter-600">Built out of</h1>
+          <h1 class="text-4xl sm:text-6xl cormorant-italic">frustration.</h1>
+          <p class="text-base sm:text-lg py-4 playfair-display-light max-w-lg text-slate-600">
+            Index didn't start as a product idea. It started as a very annoying afternoon.
+          </p>
+        </section>
+
+        <!-- ── ORIGIN STORY ── -->
+        <div class="max-w-3xl mx-auto px-6 pb-16">
+
+          <!-- The story card -->
+          <div class="bg-white rounded-2xl p-8 sm:p-12 shadow-sm mb-8 relative overflow-hidden">
+            <!-- Decorative quote mark -->
+            <span class="cormorant-italic text-[9rem] leading-none text-teal-50 absolute -top-4 -left-2 select-none pointer-events-none">"</span>
+
+            <div class="relative">
+              <p class="text-slate-700 leading-relaxed mb-6 inter-400">
+                A while back, I was digging through old files looking for a project I'd worked on in college. I knew it existed. I remembered bits of it — the problem it solved, a few lines of code, a rough idea of the structure. What I couldn't remember was what I'd named the folder, or the file, or honestly anything useful.
+              </p>
+              <p class="text-slate-700 leading-relaxed mb-6 inter-400">
+                So I searched. And searched. Renamed guesses. Opened folders I hadn't touched in years. Nothing. The file was somewhere on my machine — I just had no way to ask it a question like <span class="italic">"do you contain the thing I'm thinking of?"</span>
+              </p>
+              <p class="text-slate-700 leading-relaxed mb-8 inter-400">
+                That's when it clicked: the problem wasn't that the file was lost. The problem was that every search tool I had only knew about names and dates — not <span class="font-semibold">what was actually inside</span>. If I couldn't remember what I called it, I had nothing.
+              </p>
+
+              <!-- Pullquote -->
+              <div class="border-l-4 border-teal-700 pl-6 my-8">
+                <p class="cormorant-italic text-2xl sm:text-3xl text-slate-800 leading-snug">
+                  "If I can't find the name, maybe I can search for something I remember."
+                </p>
+              </div>
+
+              <p class="text-slate-700 leading-relaxed mb-6 inter-400">
+                That one thought turned into Index. A tool that doesn't care what you called your files — only what's in them. Add your folders once, and everything becomes searchable: PDFs, Word docs, spreadsheets, text files, all of it. Quietly running in the background, ready whenever you need it.
+              </p>
+              <p class="text-slate-700 leading-relaxed inter-400">
+                I never did find that college project. But I haven't lost anything since.
+              </p>
+
+              <div class="mt-8 pt-6 border-t border-slate-100 flex flex-row items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-teal-900 flex items-center justify-center text-white text-sm inter-700">A</div>
+                <div>
+                  <p class="text-sm inter-600">Andre</p>
+                  <p class="text-xs text-slate-400 playfair-display-light">Founder, Index</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── WHAT WE BELIEVE ── -->
+          <div class="mt-16 mb-12">
+            <div class="flex flex-row items-center gap-3 mb-8">
+              <span class="cormorant text-2xl text-slate-400">—</span>
+              <h2 class="text-xl inter-600">What we believe</h2>
+              <div class="flex-1 h-px bg-slate-200"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+              <div class="bg-white rounded-xl p-6 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="size-10 mb-4 text-teal-800">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 15.803 7.5 7.5 0 0 0 15.803 15.803Z" />
+                </svg>
+                <h3 class="font-semibold mb-2">Search should understand you</h3>
+                <p class="text-sm text-slate-500 playfair-display-light leading-relaxed">You shouldn't need to remember a filename. You should be able to search for what you know — a word, a phrase, a fragment of a sentence.</p>
+              </div>
+
+              <div class="bg-white rounded-xl p-6 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="size-10 mb-4 text-teal-800">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+                </svg>
+                <h3 class="font-semibold mb-2">Your files stay yours</h3>
+                <p class="text-sm text-slate-500 playfair-display-light leading-relaxed">Everything runs locally. No cloud, no syncing, no servers. Index never touches your data — it just helps you find it.</p>
+              </div>
+
+              <div class="bg-white rounded-xl p-6 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="size-10 mb-4 text-teal-800">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                </svg>
+                <h3 class="font-semibold mb-2">Tools should be silent</h3>
+                <p class="text-sm text-slate-500 playfair-display-light leading-relaxed">Index runs quietly in the background, always up to date, never in your way. It's ready the moment you need it and invisible when you don't.</p>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ── CTA ── -->
+          <div class="text-center mt-16">
+            <h2 class="font-semibold text-2xl sm:text-3xl inter-600 mb-2">Ready to stop losing things?</h2>
+            <p class="text-slate-500 playfair-display-light mb-6">Join the waitlist and be the first to know when Index is available.</p>
+            <button class="w-fit flex mx-auto flex-row items-center gap-2 bg-black hover:bg-gray-900 hover:cursor-pointer text-sm text-white p-3 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+              Join the waitlist
+            </button>
+          </div>
+
+        </div>
+
+        <!-- ── FOOTER ── -->
+        <footer class="w-full p-4 bg-white/10 border-t border-white/10 text-center text-xs text-slate-400 py-6">
+          © 2025 Index. All rights reserved.
+        </footer>
+
+      </div>
+    </div>
+
+    <script>
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobile-menu');
+      hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    </script>
+  </body>
+</html>

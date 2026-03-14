@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQs — Index</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    .inter-700 { font-family: "Inter", sans-serif; font-weight: 700; }
+    .inter-600 { font-family: "Inter", sans-serif; font-weight: 600; }
+    .cormorant { font-family: "Cormorant", serif; font-weight: 800; }
+    .cormorant-italic { font-family: "Cormorant", serif; font-weight: 800; font-style: italic; }
+    .playfair-display-light { font-family: "Playfair Display", serif; font-weight: 300; }
+
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: flex; }
+
+    details summary { list-style: none; }
+    details summary::-webkit-details-marker { display: none; }
+
+    details[open] .chevron { transform: rotate(180deg); }
+    .chevron { transition: transform 0.2s ease; }
+
+    details[open] summary { border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; margin-bottom: 1rem; }
+  </style>
+  <body>
+    <div class="relative w-screen min-h-screen">
+
+      <div class="absolute inset-x-0 top-0 -z-10 h-full bg-slate-100"></div>
+
+      <div class="relative z-10">
+
+        <!-- ── HEADER ── -->
+        <header class="w-full bg-teal-900 p-3 px-6 flex flex-row items-center justify-between">
+          <a href="/index.html" class="font-bold text-white text-2xl sm:text-4xl inter-700 flex flex-row items-center">
+            Index
+            <span class="cormorant text-sm sm:text-lg pt-1 pl-2 text-slate-300">
+              <span class="text-white">|</span> Intelligent file search
+            </span>
+          </a>
+          <nav class="hidden md:flex flex-row items-center gap-6 font-semibold text-slate-200">
+            <a class="hover:text-white transition-colors" href="./about.html">About</a>
+            <a class="text-white transition-colors border-b border-white/50" href="./FAQ.html">FAQs</a>
+            <a class="flex flex-row hover:text-white items-center gap-1 transition-colors" href="/waitlist">
+              Get Started
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 pt-1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </nav>
+          <button id="hamburger" class="md:hidden text-white p-1" aria-label="Toggle menu">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          </button> 
+        </header>
+
+        <div id="mobile-menu" class="flex-col bg-teal-900/95 md:hidden px-6 py-4 gap-4 font-semibold text-slate-200 text-lg">
+          <a class="hover:text-white transition-colors" href="./about.html">About</a>
+          <a class="text-white" href="/FAQ">FAQs</a>
+          <a class="flex flex-row items-center gap-1 hover:text-white transition-colors" href="/waitlist">
+            Get Started
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- ── HERO ── -->
+        <section class="flex flex-col pt-20 sm:pt-32 w-full text-center items-center select-none px-4 pb-16">
+          <p class="text-teal-600 text-sm inter-600 tracking-widest uppercase mb-4">Support</p>
+          <h1 class="text-4xl sm:text-6xl inter-600">Frequently Asked</h1>
+          <h1 class="text-4xl sm:text-6xl cormorant-italic">Questions.</h1>
+          <p class="text-base sm:text-lg py-4 playfair-display-light max-w-lg text-slate-600">
+            Everything you need to know about Index.
+          </p>
+        </section>
+
+        <!-- ── FAQ CONTENT ── -->
+        <div class="max-w-3xl mx-auto px-6 pb-24">
+
+          <!-- Category: General -->
+          <div class="mb-12">
+            <div class="flex flex-row items-center gap-3 mb-6">
+              <span class="cormorant text-2xl text-slate-400">01</span>
+              <h2 class="text-xl inter-600">General</h2>
+              <div class="flex-1 h-px bg-slate-200"></div>
+            </div>
+
+            <div class="flex flex-col gap-3">
+
+              <details class="group bg-white rounded-xl p-5 shadow-sm">
+                <summary class="flex flex-row justify-between items-center cursor-pointer">
+                  <span class="font-semibold pr-4">What is Index?</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="chevron size-5 shrink-0 text-slate-400">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </summary>
+                <p class="text-slate-600 text-sm leading-relaxed">Index is a local-first desktop application that makes your files instantly searchable. Add folders, and Index will catalog every file within them — including the content inside PDFs, Word documents, spreadsheets, and more — so you can find anything in seconds.</p>
+              </details>
+
+              <details class="group bg-white rounded-xl p-5 shadow-sm">
+                <summary class="flex flex-row justify-between items-center cursor-pointer">
+                  <span class="font-semibold pr-4">Is Index free to use?</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="chevron size-5 shrink-0 text-slate-400">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </summary>
+                <p class="text-slate-600 text-sm leading-relaxed">Index is currently in early access. Join the waitlist to be among the first to try it. Pricing details will be announced closer to the full release.</p>
+              </details>
+
+              <details class="group bg-white rounded-xl p-5 shadow-sm">
+                <summary class="flex flex-row justify-between items-center cursor-pointer">
+                  <span class="font-semibold pr-4">What platforms does Index support?</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="chevron size-5 shrink-0 text-slate-400">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </summary>
+                <p class="text-slate-600 text-sm leading-relaxed">Index is available for macOS and Windows. Linux support is planned for a future release.</p>
+              </details>
+
+            </div>
+          </div>
+
+          <!-- Category: Files & Search -->
+          <div class="mb-12">
+            <div class="flex flex-row items-center gap-3 mb-6">
+              <span class="cormorant text-2xl text-slate-400">02</span>
+              <h2 class="text-xl inter-600">Files & Search</h2>
+              <div class="flex-1 h-px bg-slate-200"></div>
+            </div>
+
+            <div class="flex flex-col gap-3">
+
+              <details class="group bg-white rounded-xl p-5 shadow-sm">
+                <summary class="flex flex-row justify-between items-center cursor-pointer">
+                  <span class="font-semibold pr-4">What file types does Index support?</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="chevron size-5 shrink-0 text-slate-400">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </summary>
+                <p class="text-slate-600 text-sm leading-relaxed">Index supports all major file types including PDF, DOCX, XLSX, PPTX, TXT, Markdown, and more. If a file has readable text content, Index can search inside it.</p>
+              </details>
+
+              <details class="group bg-white rounded-xl p-5 shadow-sm">
+                <summary class="flex flex-row justify-between items-center cursor-pointer">
+                  <span class="font-semibold pr-4">How many files can I add?</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="chevron size-5 shrink-0 text-slate-400">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </summary>
+                <p class="text-slate-600 text-sm leading-relaxed">There's no hard limit. Index is designed to handle 10,000+ files without any slowdown. Because everything runs locally, scale is only limited by your machine's storage.</p>
+              </details>
+
+              <details class="group bg-white rounded-xl p-5 shadow-sm">
+                <summary class="flex flex-row justify-between items-center cursor-pointer">
+                  <span class="font-semibold pr-4">Does Index update automatically when files change?</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="chevron size-5 shrink-0 text-slate-400">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </summary>
+                <p class="text-slate-600 text-sm leading-relaxed">Yes. Index watches your folders in real time. New files are indexed automatically, changes are reflected immediately, and deleted files are removed from the index. You never need to re-add a folder manually.</p>
+              </details>
+
+              <details class="group bg-white rounded-xl p-5 shadow-sm">
+                <summary class="flex flex-row justify-between items-center cursor-pointer">
+                  <span class="font-semibold pr-4">Can I add multiple folders from different drives?</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="chevron size-5 shrink-0 text-slate-400">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </summary>
+                <p class="text-slate-600 text-sm leading-relaxed">Yes. You can add as many folders as you like, across any mounted drives. All of them are unified into a single searchable index.</p>
+              </details>
+
+            </div>
+          </div>
+
+          <!-- Category: Privacy & Security -->
+          <div class="mb-12">
+            <div class="flex flex-row items-center gap-3 mb-6">
+              <span class="cormorant text-2xl text-slate-400">03</span>
+              <h2 class="text-xl inter-600">Privacy & Security</h2>
+              <div class="flex-1 h-px bg-slate-200"></div>
+            </div>
+
+            <div class="flex flex-col gap-3">
+
+              <details class="group bg-white rounded-xl p-5 shadow-sm">
+                <summary class="flex flex-row justify-between items-center cursor-pointer">
+                  <span class="font-semibold pr-4">Does Index send my files to the cloud?</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="chevron size-5 shrink-0 text-slate-400">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </summary>
+                <p class="text-slate-600 text-sm leading-relaxed">Never. Index is entirely local. Your files, their contents, and the search index all stay on your machine. Nothing is ever uploaded or transmitted anywhere.</p>
+              </details>
+
+              <details class="group bg-white rounded-xl p-5 shadow-sm">
+                <summary class="flex flex-row justify-between items-center cursor-pointer">
+                  <span class="font-semibold pr-4">Where is my index data stored?</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="chevron size-5 shrink-0 text-slate-400">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </summary>
+                <p class="text-slate-600 text-sm leading-relaxed">The index database is stored locally in your application data directory. You have full control over it and can delete it at any time from within the app.</p>
+              </details>
+
+            </div>
+          </div>
+
+          <!-- Still have questions CTA -->
+          <div class="bg-slate-50 rounded-2xl p-8 text-center border border-slate-100">
+            <h3 class="text-xl inter-600 mb-2">Still have questions?</h3>
+            <p class="text-slate-500 playfair-display-light mb-6">Can't find what you're looking for? We're happy to help.</p>
+            <a href="mailto:hello@indexapp.com" class="inline-flex flex-row items-center gap-2 bg-black hover:bg-gray-900 text-white text-sm p-3 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+              </svg>
+              Get in touch
+            </a>
+          </div>
+
+        </div>
+
+        <!-- ── FOOTER ── -->
+        <footer class="w-full p-4 bg-white/10 border-t border-white/10 text-center text-xs text-slate-400 py-6">
+          © 2025 Index. All rights reserved.
+        </footer>
+
+      </div>
+    </div>
+
+    <script>
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobile-menu');
+      hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    </script>
+  </body>
+</html>
