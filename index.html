@@ -1,178 +1,916 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andre Schoolman | Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andre Schoolman — Developer & Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #060d1a;
+      --bg-2:       #091220;
+      --border:     rgba(99,202,183,0.14);
+      --teal:       #63cab7;
+      --teal-bright:#7eeedd;
+      --teal-dim:   rgba(99,202,183,0.12);
+      --teal-glow:  rgba(99,202,183,0.07);
+      --text:       #b8cce0;
+      --text-dim:   #5a7490;
+      --text-head:  #eaf2ff;
+      --mono:       'DM Mono', monospace;
+      --sans:       'DM Sans', sans-serif;
+      --serif:      'Cormorant', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    #bg-canvas {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    }
+
+    .grain {
+      position: fixed; inset: -200%; width: 400%; height: 400%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' fill='white'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+      opacity: 0.04; animation: grain 8s steps(10) infinite;
+      pointer-events: none; z-index: 1;
+    }
+    @keyframes grain {
+      0%,100%{transform:translate(0,0)} 10%{transform:translate(-5%,-5%)}
+      20%{transform:translate(-10%,5%)} 30%{transform:translate(5%,-10%)}
+      40%{transform:translate(-5%,15%)} 50%{transform:translate(-10%,5%)}
+      60%{transform:translate(15%,0)}   70%{transform:translate(0,10%)}
+      80%{transform:translate(-15%,0)}  90%{transform:translate(10%,5%)}
+    }
+
+    #shell {
+      position: relative; z-index: 2;
+      max-width: 1100px; margin: 0 auto; padding: 0 48px;
+    }
+
+    /* ═══ NAV ═══ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(6,13,26,0.82);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--mono); font-size: 14px; color: var(--teal);
+      letter-spacing: 0.05em; text-decoration: none; position: relative;
+    }
+    .nav-logo::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+      height: 1px; background: linear-gradient(90deg, var(--teal), transparent);
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 32px; list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--mono); font-size: 12px; color: var(--text-dim);
+      text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s;
+    }
+    .nav-links a .num { color: var(--teal); margin-right: 5px; }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-resume {
+      font-family: var(--mono); font-size: 12px;
+      border: 1px solid var(--teal); padding: 8px 20px; text-decoration: none;
+      letter-spacing: 0.05em;
+      background: linear-gradient(to right, var(--teal) 50%, transparent 50%);
+      background-size: 200% 100%;
+      background-position: right center;
+      color: var(--teal);
+      transition: background-position 0.3s ease, color 0.3s ease;
+    }
+    .nav-resume:hover {
+      background-position: left center;
+      color: var(--bg);
+    }
+    #hamburger {
+      display: none; background: none; border: none;
+      cursor: pointer; flex-direction: column; gap: 5px; padding: 4px;
+    }
+    #hamburger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--teal); transition: 0.3s;
+    }
+
+    /* ═══ Sidebars ═══ */
+    .social-bar {
+      position: fixed; left: 28px; bottom: 0; z-index: 50;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+    }
+    .social-bar a {
+      color: var(--text-dim); transition: color 0.2s, transform 0.2s; display: block;
+    }
+    .social-bar a:hover { color: var(--teal); transform: translateY(-3px); }
+    .social-bar::after {
+      content: ''; display: block; width: 1px; height: 90px;
+      background: linear-gradient(to bottom, var(--text-dim), transparent); margin-top: 4px;
+    }
+    .email-bar {
+      position: fixed; right: 28px; bottom: 0; z-index: 50;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+    }
+    .email-bar a {
+      font-family: var(--mono); font-size: 11px; color: var(--text-dim);
+      text-decoration: none; writing-mode: vertical-rl; letter-spacing: 0.1em;
+      transition: color 0.2s, transform 0.2s;
+    }
+    .email-bar a:hover { color: var(--teal); transform: translateY(-3px); }
+    .email-bar::after {
+      content: ''; display: block; width: 1px; height: 90px;
+      background: linear-gradient(to bottom, var(--text-dim), transparent);
+    }
+
+    /* ═══ Sections ═══ */
+    section {
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: center; padding: 120px 0 80px; position: relative;
+    }
+    .section-label {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 56px;
+    }
+    .section-label h2 {
+      font-family: var(--sans); font-size: 26px; font-weight: 600;
+      color: var(--text-head); white-space: nowrap;
+    }
+    .section-label .num { font-family: var(--mono); font-size: 14px; color: var(--teal); }
+    .section-label::after {
+      content: ''; display: block; flex: 1; height: 1px; max-width: 380px;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+
+    /* ═══ HERO ═══ */
+    #hero {
+      min-height: 100vh; padding-top: 80px;
+      justify-content: center; overflow: hidden;
+    }
+    .hero-bg-text {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--mono);
+      font-size: clamp(80px, 18vw, 240px); font-weight: 700;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(99,202,183,0.035);
+      letter-spacing: -0.05em; white-space: nowrap;
+      pointer-events: none; user-select: none; z-index: 0;
+    }
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-eyebrow {
+      font-family: var(--mono); font-size: 14px; color: var(--teal);
+      margin-bottom: 20px;
+      opacity: 0; animation: fadeUp 0.6s 0.3s forwards;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 40px; height: 1px; background: var(--teal);
+    }
+    .hero-name {
+      font-family: var(--sans);
+      font-size: clamp(46px, 7.5vw, 82px); font-weight: 700;
+      color: var(--text-head); line-height: 1.02;
+      opacity: 0; animation: fadeUp 0.6s 0.5s forwards;
+    }
+    .hero-tagline {
+      font-family: var(--serif);
+      font-size: clamp(38px, 5.8vw, 68px); font-weight: 400; font-style: italic;
+      background: linear-gradient(135deg, var(--text-dim) 0%, var(--teal) 55%, var(--teal-bright) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      line-height: 1.1; margin-top: 8px;
+      opacity: 0; animation: fadeUp 0.6s 0.7s forwards;
+    }
+    .hero-body {
+      margin-top: 28px; max-width: 500px; color: var(--text-dim);
+      font-size: 15px; line-height: 1.85;
+      opacity: 0; animation: fadeUp 0.6s 0.9s forwards;
+    }
+    .hero-actions {
+      display: flex; gap: 16px; flex-wrap: wrap; margin-top: 44px;
+      opacity: 0; animation: fadeUp 0.6s 1.1s forwards;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--mono); font-size: 13px; letter-spacing: 0.05em;
+      color: var(--bg); background: var(--teal); padding: 14px 30px;
+      text-decoration: none; font-weight: 500; transition: all 0.25s;
+      box-shadow: 0 0 32px rgba(99,202,183,0.35);
+    }
+    .btn-primary:hover {
+      background: var(--teal-bright); transform: translateY(-2px);
+      box-shadow: 0 0 56px rgba(99,202,183,0.6);
+    }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--mono); font-size: 13px; letter-spacing: 0.05em;
+      color: var(--teal); border: 1px solid var(--teal);
+      padding: 14px 30px; text-decoration: none; transition: all 0.25s;
+    }
+    .btn-secondary:hover {
+      background: var(--teal-dim); transform: translateY(-2px);
+      box-shadow: 0 0 24px rgba(99,202,183,0.18);
+    }
+
+    .hero-stats {
+      display: flex; gap: 48px; flex-wrap: wrap;
+      margin-top: 64px; padding-top: 40px;
+      border-top: 1px solid var(--border);
+      opacity: 0; animation: fadeUp 0.6s 1.3s forwards;
+    }
+    .stat { display: flex; flex-direction: column; }
+    .stat-num {
+      font-family: var(--sans); font-size: 38px; font-weight: 700;
+      color: var(--text-head); line-height: 1;
+    }
+    .stat-num .accent { color: var(--teal); }
+    .stat-label {
+      font-family: var(--mono); font-size: 11px; color: var(--text-dim);
+      letter-spacing: 0.08em; text-transform: uppercase; margin-top: 6px;
+    }
+
+    .scroll-indicator {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      opacity: 0; animation: fadeUp 0.6s 1.6s forwards;
+    }
+    .scroll-indicator span {
+      font-family: var(--mono); font-size: 10px; color: var(--text-dim);
+      letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px; height: 52px;
+      background: linear-gradient(to bottom, var(--teal), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100%{ opacity:0.4; transform:scaleY(1); }
+      50%    { opacity:1;   transform:scaleY(1.2); }
+    }
+
+    /* ═══ ABOUT ═══ */
+    #about::before {
+      content: ''; position: absolute; top: 10%; left: -20%;
+      width: 55vw; height: 55vw;
+      background: radial-gradient(circle, rgba(56,100,210,0.09) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .about-grid {
+      display: grid; grid-template-columns: 3fr 2fr; gap: 80px; align-items: start;
+    }
+    .about-text p { color: var(--text-dim); margin-bottom: 18px; line-height: 1.9; }
+    .about-text p a { color: var(--teal); text-decoration: none; }
+    .about-text p a:hover { text-decoration: underline; }
+
+    .about-stack { margin-top: 32px; }
+    .about-stack-label {
+      font-family: var(--mono); font-size: 11px; color: var(--teal);
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .about-stack-label::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+    .stack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 32px; }
+    .stack-item {
+      font-family: var(--mono); font-size: 12px; color: var(--text-dim);
+      display: flex; align-items: center; gap: 8px; transition: color 0.2s;
+    }
+    .stack-item:hover { color: var(--teal); }
+    .stack-item::before { content: '▸'; color: var(--teal); font-size: 10px; flex-shrink: 0; }
+
+    .about-photo-frame {
+      position: relative; width: 100%; max-width: 300px; margin-left: auto;
+    }
+    .about-photo-frame::after {
+      content: ''; position: absolute; top: 16px; left: 16px; right: -16px; bottom: -16px;
+      border: 1px solid var(--teal); border-radius: 3px; z-index: -1;
+      transition: transform 0.3s;
+    }
+    .about-photo-frame:hover::after { transform: translate(5px, 5px); }
+    .about-photo-inner {
+      position: relative; z-index: 1; width: 100%; aspect-ratio: 3/4;
+      background: linear-gradient(135deg, var(--bg-2) 0%, rgba(99,202,183,0.06) 100%);
+      border: 1px solid var(--border); border-radius: 3px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px var(--border);
+    }
+    .about-photo-inner img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: grayscale(20%) contrast(1.05); transition: filter 0.3s;
+    }
+    .about-photo-frame:hover .about-photo-inner img { filter: grayscale(0%); }
+    .photo-placeholder-icon { color: var(--teal); opacity: 0.35; }
+    .photo-placeholder-label {
+      font-family: var(--mono); font-size: 11px; color: var(--text-dim); letter-spacing: 0.06em;
+    }
+
+    /* ═══ SKILLS ═══ */
+    #skills::before {
+      content: ''; position: absolute; top: 20%; right: -10%;
+      width: 45vw; height: 45vw;
+      background: radial-gradient(circle, rgba(99,202,183,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border);
+    }
+    .skill-card {
+      background: var(--bg); padding: 36px 30px;
+      position: relative; overflow: hidden; transition: background 0.3s;
+    }
+    .skill-card-glow {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(99,202,183,0.06) 0%, transparent 55%);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .skill-card:hover { background: #0c1c2e; }
+    .skill-card:hover .skill-card-glow { opacity: 1; }
+    .skill-card-top-line {
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--teal), rgba(56,100,210,0.8), transparent);
+      transform: scaleX(0); transition: transform 0.4s; transform-origin: left;
+    }
+    .skill-card:hover .skill-card-top-line { transform: scaleX(1); }
+    .skill-card-num {
+      position: absolute; top: 24px; right: 28px;
+      font-family: var(--mono); font-size: 11px;
+      color: rgba(99,202,183,0.18); letter-spacing: 0.06em;
+    }
+    .skill-icon {
+      width: 44px; height: 44px; margin-bottom: 22px; padding: 10px;
+      background: var(--teal-dim); border: 1px solid var(--border);
+      color: var(--teal); transition: all 0.3s; position: relative; z-index: 1;
+    }
+    .skill-card:hover .skill-icon {
+      background: rgba(99,202,183,0.15); border-color: var(--teal);
+      box-shadow: 0 0 20px rgba(99,202,183,0.25);
+    }
+    .skill-icon svg { width: 100%; height: 100%; display: block; }
+    .skill-card h3 {
+      font-size: 16px; font-weight: 600; color: var(--text-head);
+      margin-bottom: 12px; position: relative; z-index: 1;
+    }
+    .skill-card p {
+      font-size: 13px; color: var(--text-dim); line-height: 1.75;
+      position: relative; z-index: 1;
+    }
+    .skill-tags {
+      margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px;
+      position: relative; z-index: 1;
+    }
+    .skill-tag {
+      font-family: var(--mono); font-size: 10px; color: var(--teal);
+      letter-spacing: 0.04em; background: var(--teal-glow);
+      border: 1px solid rgba(99,202,183,0.18); padding: 3px 10px;
+    }
+
+    /* ═══ PROJECTS ═══ */
+    #projects::before {
+      content: ''; position: absolute; bottom: 10%; left: 5%;
+      width: 40vw; height: 40vw;
+      background: radial-gradient(circle, rgba(56,100,210,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .projects-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; background: var(--border);
+    }
+    .project-card {
+      background: var(--bg); padding: 36px;
+      position: relative; overflow: hidden; transition: background 0.3s; cursor: default;
+    }
+    .project-card-glow {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(99,202,183,0.05) 0%, transparent 55%);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .project-card:hover { background: #0c1c2e; }
+    .project-card:hover .project-card-glow { opacity: 1; }
+    .project-top-line {
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--teal), transparent);
+      transform: scaleX(0); transition: transform 0.4s;
+    }
+    .project-card:hover .project-top-line { transform: scaleX(1); }
+
+    .project-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      margin-bottom: 20px; position: relative; z-index: 1;
+    }
+    .project-folder { color: var(--teal); }
+    .project-folder svg { width: 34px; height: 34px; }
+    .project-links { display: flex; gap: 14px; }
+    .project-links a { color: var(--text-dim); transition: color 0.2s, transform 0.2s; }
+    .project-links a:hover { color: var(--teal); transform: translateY(-2px); }
+    .project-links svg { width: 18px; height: 18px; }
+    .project-card h3 {
+      font-size: 17px; font-weight: 600; color: var(--text-head);
+      margin-bottom: 12px; position: relative; z-index: 1; transition: color 0.2s;
+    }
+    .project-card:hover h3 { color: var(--teal); }
+    .project-card p {
+      font-size: 13px; color: var(--text-dim); line-height: 1.8;
+      position: relative; z-index: 1;
+    }
+    .project-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border);
+      position: relative; z-index: 1;
+    }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .project-tag {
+      font-family: var(--mono); font-size: 10px; color: var(--text-dim); letter-spacing: 0.04em;
+    }
+    .project-num {
+      font-family: var(--mono); font-size: 11px;
+      color: rgba(99,202,183,0.22); letter-spacing: 0.05em;
+    }
+
+    /* ═══ CONTACT ═══ */
+    #contact {
+      min-height: 70vh; padding: 100px 0 140px;
+      justify-content: center; align-items: center;
+      text-align: center; overflow: hidden;
+    }
+    #contact::before {
+      content: ''; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%); width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(99,202,183,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .contact-inner { position: relative; z-index: 1; }
+    .contact-eyebrow {
+      font-family: var(--mono); font-size: 13px; color: var(--teal);
+      margin-bottom: 20px; letter-spacing: 0.06em;
+    }
+    .contact-heading {
+      font-family: var(--sans); font-weight: 700; color: var(--text-head);
+      font-size: clamp(36px, 5vw, 58px); margin-bottom: 16px; line-height: 1.1;
+    }
+    .contact-sub {
+      color: var(--text-dim); max-width: 480px; margin: 0 auto 48px; line-height: 1.85;
+    }
+    .contact-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .contact-btn {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-family: var(--mono); font-size: 13px;
+      border: 1px solid var(--teal); padding: 14px 32px; text-decoration: none;
+      letter-spacing: 0.05em;
+      background: linear-gradient(to right, var(--teal) 50%, transparent 50%);
+      background-size: 200% 100%;
+      background-position: right center;
+      color: var(--teal);
+      transition: background-position 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .contact-btn:hover {
+      background-position: left center;
+      color: var(--bg);
+      box-shadow: 0 0 32px rgba(99,202,183,0.35);
+    }
+    .contact-btn svg { width: 15px; height: 15px; }
+    .contact-btn.outline {
+      border-color: rgba(255,255,255,0.12);
+      background: linear-gradient(to right, rgba(255,255,255,0.06) 50%, transparent 50%);
+      background-size: 200% 100%;
+      background-position: right center;
+      color: var(--text-dim);
+    }
+    .contact-btn.outline:hover {
+      background-position: left center;
+      color: var(--teal);
+      border-color: var(--teal);
+      box-shadow: none;
+    }
+
+    /* ═══ FOOTER ═══ */
+    footer {
+      position: relative; z-index: 2;
+      border-top: 1px solid var(--border); padding: 28px 48px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    footer p { font-family: var(--mono); font-size: 11px; color: var(--text-dim); letter-spacing: 0.05em; }
+    footer a { color: var(--teal); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ═══ ANIMATIONS ═══ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(26px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    /* ═══ MOBILE ═══ */
+    @media (max-width: 768px) {
+      #shell { padding: 0 24px; }
+      nav { padding: 16px 24px; }
+      #hamburger { display: flex; }
+      .nav-links {
+        display: none; position: fixed; top: 57px; right: 0;
+        width: 72vw; max-width: 300px;
+        background: rgba(9,18,32,0.98); backdrop-filter: blur(20px);
+        flex-direction: column; justify-content: center;
+        align-items: center; gap: 28px;
+        border-left: 1px solid var(--border); z-index: 300;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 14px; }
+      .nav-resume { display: none; }
+      .social-bar, .email-bar { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .about-photo-frame { max-width: 240px; margin: 0 auto; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 32px; }
+    }
+  </style>
 </head>
 <body>
-    <div class = "w-screen h-full bg-slate-100">
-        <nav class = "absolute w-screen p-12">
-            <ul class = "flex flex-row items-center justify-center gap-4">
-                <li class = "font-light hover:font-semibold text-sm">
-                    <a href = "#">ABOUT</a></li>
-                <li class = "font-light hover:font-semibold text-sm"><a href = "#">PROJECTS</a></li>
-                <li class = "font-light hover:font-semibold text-sm"><a href = "#">SKILLS</a></li>
-                <li class = "font-light hover:font-semibold text-sm"><a href = "#">PROJECTS</a></li>
-                <li class = "font-light hover:font-semibold text-sm"><a href = "#">PHILOSOPHY</a></li>
-                <li class = "font-light hover:font-semibold text-sm"><a href = "#">CONTACT</a></li>
-            </ul>
-        </nav>
 
-        <div class = "flex h-auto flex-col">
-    <div class = "bg-slate-100 h-screen flex  flex-col items-center justify-center">
-        <!-- <p class = "font-semibold text-lg">NAME</p> -->
-         <img src = "./selfie.jpeg" class = "rounded-full w-32 m-4 shadow-xl">
-        <h1 class = "font-semibold text-slate-900 text-6xl">Andre Schoolman</h1>
-        <!-- <p class = "text-slate-300 text-sm font-semibold uppercase">Self-taught programmer looking for job, internship, or experience.</p> -->
-        <p class = "text-slate-900 text-sm font-semibold uppercase">Full-Stack Developer. Designer. Creator.</p>
-    </div>
-    <div class = "p-8 gap-4 flex flex-col pt-8">
-    <div>
-    <p class = "font-black text-lg">WHO I AM</p>
-    <p class = "font-light text-xs pb-2 italic">Click to expand sections</p>
-    <!-- <h1 class = "font-light text-sm">Frontend & Backend Developer, UX/ UI Designer, AI Enthusiast, Apple Fanatic, Gamer</h1> -->
-    
-    <div class = "flex sm:flex-row flex-col gap-2 text-sm">
-    <div class = "w-full sm:w-fit bg-slate-300 rounded-md p-2 hover:bg-slate-400 hover:cursor-pointer">
-        <p>Frontend Developer</p>
-    </div>
-    <div class = "w-full sm:w-fit bg-slate-300 rounded-md p-2 hover:bg-slate-400 hover:cursor-pointer">
-        <p>Backend Developer</p>
-    </div>
-    <div class = "w-full sm:w-fit bg-slate-300 rounded-md p-2 hover:bg-slate-400 hover:cursor-pointer">
-        <p>UI / UX Designer</p>
-    </div>
-    <div class = "w-full sm:w-fit bg-slate-300 rounded-md p-2 hover:bg-slate-400 hover:cursor-pointer">
-        <p>AI Enthusiast</p>
-    </div>
-    <div class = "w-full sm:w-fit bg-slate-300 rounded-md p-2 hover:bg-slate-400 hover:cursor-pointer">
-        <p>Apple Fanatic</p>
-    </div>
-    <div class = "w-full sm:w-fit bg-slate-300 rounded-md p-2 hover:bg-slate-400 hover:cursor-pointer">
-        <p>Gamer</p>
-    </div>
-    </div>
+<canvas id="bg-canvas"></canvas>
+<div class="grain"></div>
+
+<nav>
+  <a href="#hero" class="nav-logo">AS</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about"><span class="num">01.</span>About</a></li>
+    <li><a href="#skills"><span class="num">02.</span>Skills</a></li>
+    <li><a href="#projects"><span class="num">03.</span>Projects</a></li>
+    <li><a href="#contact"><span class="num">04.</span>Contact</a></li>
+    <li><a href="./document.pdf" class="nav-resume" target="_blank">Resume</a></li>
+  </ul>
+  <button id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="social-bar">
+  <a href="https://github.com/Winnrman" target="_blank" aria-label="GitHub">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+  </a>
+  <a href="https://www.linkedin.com/in/andre-schoolman" target="_blank" aria-label="LinkedIn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+  </a>
 </div>
 
-    <div>
-    <p class = "font-black text-lg">GOAL</p>
-    <h1 class = "font-light text-sm">A job working to help assist you in making your company the best it can be.</h1>
-    </div>
-
-    <p class = "font-black text-lg">CURRENTLY LEARNING</p>
-
-    <div class = "flex flex-row gap-2">
-        <div class = "bg-slate-200 w-full sm:w-fit p-2">
-            <h1 class = "font-light text-xl">Operating Systems</h1>
-            <p class = "text-sm font-light">Bootloaders, Kernels, C, Memory Addresses, QEMU, NASM</p>
-        </div>
-
-        <div class = "bg-slate-200 w-full sm:w-fit p-2">
-            <h1 class = "font-light text-xl">Docker</h1>
-            <p class = "text-sm font-light">Containers, Load balancers, Scalablity 
-        </div>
-    
-    </div>
-    
-    <div>
-    <p class = "font-semibold text-lg">SKILLS</p>
-    <h1 class = "font-light text-sm">Python, JavaScript, Java, C, HTML/CSS, React, React Native, Swift, Figma</h1>
-    
-    <div class = "my-4 flex sm:flex-row flex-col gap-4">
-        <div class = "w-full sm:w-1/3 p-2 bg-slate-200 rounded-md text-center">
-            <p class = "font-bold text-xl">FAST LEARNER</p>
-            <p class = "text-sm">I am able to learn any new topic quickly, even more advanced ones such as Artificial Intelligence, which allows me to quickly adapt to entire databases of information, or custom layouts for your company. </p>
-        </div>
-        <div class = "w-full sm:w-1/3 p-2 bg-slate-200 rounded-md text-center">
-            <p class = "font-bold text-xl">TEAM PLAYER</p>
-            <p class = "text-sm">I am capable of working extremely well with others, to the point where we all work as one seamless machine, capable of executing any task flawlessly as if we'd been doing it for weeks.</p>
-        </div>
-        <div class = "w-full sm:w-1/3 p-2 bg-slate-200 rounded-md text-center">
-            <p class = "font-bold text-xl">NATURAL LEADER</p>
-            <p class = "text-sm">I lead by example, so when something needs to be taught or allocated, I show how I would get the task done, and bring enthusiasm and encouragement with every step, so anyone who works with me feels prepared.</p>
-        </div>
-        
-    </div>
+<div class="email-bar">
+  <a href="/cdn-cgi/l/email-protection#761718120413581c05151e19191a1b171836111b171f1a5815191b"><span class="__cf_email__" data-cfemail="4829262c3a2d66223b2b20272724252926082f25292124662b2725">[email&#160;protected]</span></a>
 </div>
 
-    <div>
-    <p class = "font-semibold text-lg">PHILOSOPHY</p>
-    <p class = "font-slight text-sm" >Finding the merge between the user and the software is a fundamental part of my process. When I use a tool, or play a game, or do anything
-        in my OS, I appreciate the small details, the quality-of-life aspects, and I believe that is necessary when making software. Computers 
-        were made to make things simpler, so why should you design software any other way?"
-    </p>
-    </div>
-    <p class = "font-semibold text-lg">PROJECTS <span class = "font-light">(This section is currently in development)</span></p>
+<div id="shell">
 
-    <div class = "flex sm:flex-row flex-col gap-4">
-        <div class = "sm:w-1/2 w-full sm:h-auto h-64">
-            <div class = "ring-1 ring-slate-400 p-2 w-full h-full flex items-center justify-center text-sm flex-col">
-                <p class = "font-semibold">Project Overview</p>
-                <p>Click on a project to view details</p>
-            </div>
+  <!-- ═══ HERO ═══ -->
+  <section id="hero">
+    <div class="hero-bg-text">DEV</div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Hi, my name is</p>
+      <h1 class="hero-name">Andre Schoolman.</h1>
+      <h2 class="hero-tagline">I build things for the web.</h2>
+      <p class="hero-body">Full-stack developer and designer with a background in finance. I build clean, performant software with a sharp eye for product and a bias toward shipping.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:15px;height:15px"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+          View My Work
+        </a>
+        <a href="/cdn-cgi/l/email-protection#264748425443084c55454e49494a4b474866414b474f4a0845494b" class="btn-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:15px;height:15px"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+          Get In Touch
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num"><span class="counter" data-target="4">0</span><span class="accent">+</span></span>
+          <span class="stat-label">Years building</span>
         </div>
-
-        <div class = "grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-4 sm:w-1/2 w-full" >
-            <div class = "bg-slate-200 ring-1 ring-slate-400 p-2 flex flex-col justify-between hover:cursor-pointer hover:bg-slate-100 hover:shadow-md">
-                <p>Artificial Intelligence Chatbot</p>
-                <!-- <p class = "text-sm">A small chatbot I made using Keras, PyTorch and TensorFlow in an attempt to teach myself high-level A.I concepts including tensors, tokenization, data processing techniques, prompt engineering, model architecture, dataset creation, and more. While the bot doesn't output in complete sentences (due completely to the abysmally-small custom 80-row training dataset), I still learned a bunch, and it is definitely a good starting point for anyone interested in AI concepts. </p> -->
-                <a class = "text-blue-600 text-sm" href = "https://github.com/Winnrman/keras_pytorch_chatbot">
-                    Github Link</a>
-            </div>
-            <div class = "bg-slate-200 ring-1 ring-slate-400 p-2 flex flex-col justify-between hover:cursor-pointer hover:bg-slate-100 hover:shadow-md">
-                <p>Wordladder (Wordle type-game)</p>
-                <!-- <p class = "text-sm">This website was created using HTML, CSS, and JavaScript, and was my first attempt at a personal website. It features a dark mode, a light mode, and a toggle switch to switch between the two. It also features a responsive design, and a simple, clean layout. It was a great way to learn the basics of web development, and I am proud of the result.</p> -->
-                <a class = "text-blue-600 text-sm" href = "https://winnrman.github.io/wordle-custom/index.html">Game Link</a>
-            </div>
-            <div class = "bg-slate-200 ring-1 ring-slate-400 p-2 flex flex-col justify-between hover:cursor-pointer hover:bg-slate-100 hover:shadow-md">
-                <p>Task Management App</p>
-                <!-- <p class = "text-sm">This website was created using HTML, CSS, and JavaScript, and was my first attempt at a personal website. It features a dark mode, a light mode, and a toggle switch to switch between the two. It also features a responsive design, and a simple, clean layout. It was a great way to learn the basics of web development, and I am proud of the result.</p> -->
-                <a class = "text-blue-600 text-sm" href = "https://github.com/Winnrman/tasks-app">Github Link</a>
-            </div>
-
-            <div class = "bg-slate-200 ring-1 ring-slate-400 p-2 flex flex-col justify-between hover:cursor-pointer hover:bg-slate-100 hover:shadow-md">
-                <p>Godot Platformer</p>
-                <!-- <p class = "text-sm">A small Indiana Jones-style 2D platformer demo created using the Godot open source game engine. This project taught me how to use the engine to create fluid animations, understand and create realistic tilesets, and low-level game development techniques and the necessary knowledge to become proficient. A knowledge of vectors and basic physics was useful for this project, as well as I taught myself pixel art in the process.</p> -->
-                <a class = "text-blue-600 text-sm" href = "https://github.com/Winnrman/keras_pytorch_chatbot">Github Link</a>
-            </div>
-            <div class = "bg-slate-200 ring-1 ring-slate-400 p-2 flex flex-col justify-between hover:cursor-pointer hover:bg-slate-100 hover:shadow-md">
-                <p>Text-to-Speech Program (Using Python Libraries)</p>
-                <!-- <p class = "text-sm">Using custom voice logs of words, I created a rudimentary text-to-speech software using Python libraries. This approach was not meant to demonstrate that I can code a STT library, but rather to demonstrate that I understand how the fundamentals of Speech-to-Text software works, and I am capable of reproducing it and breaking it down into its smaller parts.</p> -->
-                <a class = "text-blue-600 text-sm" href = "https://github.com/Winnrman/keras_pytorch_chatbot">Github Link</a>
-            </div>
-            <div class = "bg-slate-200 ring-1 ring-slate-400 p-2 flex flex-col justify-between hover:cursor-pointer hover:bg-slate-100 hover:shadow-md">
-                <p>Social Media / Journaling Full-Stack Web App</p>
-                <!-- <p class = "text-sm">This program (designated 'Leaflet') has been a project of mine for the greater part of four years. It began as a simple EJS and Node.JS blog app, but quickly became much more. A full social media suite capable of friend systems, liking posts, saving posts, uploading images, videos, and becoming an entire journaling platform. The project was what I used to learn React, MongoDB, Node.JS, and then eventually Firebase.</p> -->
-                <a class = "text-blue-600 text-sm" href = "https://github.com/Winnrman/Leaflet_v2_beta">Github Link</a>
-            </div>
-            <div class = "bg-slate-200 ring-1 ring-slate-400 p-2 flex flex-col justify-between hover:cursor-pointer hover:bg-slate-100 hover:shadow-md">
-                <p>Browser RPG</p>
-                <!-- <p class = "text-sm">This browser-RPG game was my first attempt at a browser game, fully inspired by games such as Melvor Idle, Cookie Clicker, and A Dark Room. This game features a health system, combat system, full armor system, progression path, and much more. It was also the first public project I ever asked for help on through the internet, and I found a few fellow programmers interested in the project to help me develop it. It uses Typescript and webpack, and is fully open source and customizable, as a great starting point for anyone looking to create a browser game.</p> -->
-                <a class = "text-blue-600 text-sm" href = "https://github.com/Winnrman/An-Empty-World">Github Link</a>
-            </div>
+        <div class="stat">
+          <span class="stat-num"><span class="counter" data-target="12">0</span><span class="accent">+</span></span>
+          <span class="stat-label">Projects shipped</span>
         </div>
+        <div class="stat">
+          <span class="stat-num"><span class="counter" data-target="8">0</span><span class="accent">+</span></span>
+          <span class="stat-label">Languages & frameworks</span>
+        </div>
+      </div>
     </div>
+    <div class="scroll-indicator">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
 
-    <div>
-        <p class = "font-semibold text-lg">FIGMA</p>
-        <p class = "font-light text-sm">I recently got into Figma, and ever since, I have learned various techniques for designing what I would consider beautiful, simplistic designs which conform to the user and the approach of simplistic design. Below are some examples:</p>
+  <!-- ═══ ABOUT ═══ -->
+  <section id="about">
+    <div class="section-label reveal">
+      <span class="num">01.</span>
+      <h2>About Me</h2>
     </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I'm a self-taught developer who went from a finance degree to a full stack. What started as personal curiosity became a serious craft — building interfaces, APIs, and tools that solve real problems.</p>
+        <p>Today I work across React, Next.js, TypeScript, Python, and Java REST APIs, with Snowflake for data. I have a deep interest in product thinking and UI quality — both shaped by years of being a demanding user of other people's software.</p>
+        <p>Outside of work I'm building <a href="#projects">Index</a>, a local-first intelligent file search desktop app, and <a href="#projects">Through the Static</a>, a post-apocalyptic browser text adventure in vanilla JS. I think the best engineers care about the whole product, not just their slice of it.</p>
+        <div class="about-stack">
+          <p class="about-stack-label">Primary Stack</p>
+          <div class="stack-grid">
+            <span class="stack-item">React / Next.js</span>
+            <span class="stack-item">TypeScript</span>
+            <span class="stack-item">Python</span>
+            <span class="stack-item">Java REST APIs</span>
+            <span class="stack-item">Tailwind CSS</span>
+            <span class="stack-item">Snowflake / SQL</span>
+            <span class="stack-item">Figma</span>
+            <span class="stack-item">Electron</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-photo-wrap reveal reveal-d2">
+        <div class="about-photo-frame">
+          <div class="about-photo-inner">
+            <!-- Replace with: <img src="./selfie.jpeg" alt="Andre Schoolman" /> -->
+            <svg class="photo-placeholder-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0.75" stroke="currentColor" style="width:52px;height:52px"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+            <span class="photo-placeholder-label">selfie.jpeg</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <div>
-        <p class = "font-semibold text-lg">RESUME</p>
-        <p class = "font-light"><a class = "text-blue-600" href = "./document.pdf">Link</a>
+  <!-- ═══ SKILLS ═══ -->
+  <section id="skills">
+    <div class="section-label reveal">
+      <span class="num">02.</span>
+      <h2>Skills</h2>
     </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-card-glow"></div>
+        <div class="skill-card-top-line"></div>
+        <span class="skill-card-num">01</span>
+        <div class="skill-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+        </div>
+        <h3>Frontend Development</h3>
+        <p>Building responsive, accessible interfaces with meticulous attention to interaction design, animation, and cross-browser consistency.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">React</span><span class="skill-tag">Next.js</span>
+          <span class="skill-tag">TypeScript</span><span class="skill-tag">Tailwind</span>
+          <span class="skill-tag">Vanilla JS</span><span class="skill-tag">HTML / CSS</span>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-d1">
+        <div class="skill-card-glow"></div>
+        <div class="skill-card-top-line"></div>
+        <span class="skill-card-num">02</span>
+        <div class="skill-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3m3 3a3 3 0 1 0 0 6h13.5a3 3 0 1 0 0-6m-16.5-3a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3M12 3v8.25m0 0-3-3m3 3 3-3"/></svg>
+        </div>
+        <h3>Backend Development</h3>
+        <p>Designing REST APIs, data pipelines, and server-side logic. Comfortable with Python and Java ecosystems and cloud-adjacent data tooling.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span><span class="skill-tag">Java</span>
+          <span class="skill-tag">REST APIs</span><span class="skill-tag">Snowflake</span>
+          <span class="skill-tag">SQL</span><span class="skill-tag">Node.js</span>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-d2">
+        <div class="skill-card-glow"></div>
+        <div class="skill-card-top-line"></div>
+        <span class="skill-card-num">03</span>
+        <div class="skill-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42"/></svg>
+        </div>
+        <h3>Design & Product</h3>
+        <p>End-to-end Figma workflows from wireframe to component library. A finance background that sharpens product instinct and business prioritization.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Figma</span><span class="skill-tag">UI / UX</span>
+          <span class="skill-tag">Prototyping</span><span class="skill-tag">Design Systems</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <div>
-    <p class = "font-semibold text-lg">CONTACT</p>
-    <h3>Email: andre.jschoolman@gmail.com [Business Inquiries Only]</h3>
-    <h3>Phone: (917) 969-4701</h3>
+  <!-- ═══ PROJECTS ═══ -->
+  <section id="projects">
+    <div class="section-label reveal">
+      <span class="num">03.</span>
+      <h2>Projects</h2>
     </div>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-card-glow"></div>
+        <div class="project-top-line"></div>
+        <div class="project-header">
+          <div class="project-folder"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0.75" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v8.25A2.25 2.25 0 0 0 4.5 16.5h15a2.25 2.25 0 0 0 2.25-2.25V11.25a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z"/></svg></div>
+          <div class="project-links">
+            <a href="https://github.com/Winnrman" target="_blank" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+            <a href="#" aria-label="External"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </div>
+        </div>
+        <h3>Index — Intelligent File Search</h3>
+        <p>A local-first desktop application that makes every file on your machine searchable by content. Drag-and-drop folder indexing, smart exclusion logic, and a full marketing website.</p>
+        <div class="project-footer">
+          <div class="project-tags"><span class="project-tag">Electron</span><span class="project-tag">JavaScript</span><span class="project-tag">Tailwind</span></div>
+          <span class="project-num">001</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-d1">
+        <div class="project-card-glow"></div>
+        <div class="project-top-line"></div>
+        <div class="project-header">
+          <div class="project-folder"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0.75" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v8.25A2.25 2.25 0 0 0 4.5 16.5h15a2.25 2.25 0 0 0 2.25-2.25V11.25a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z"/></svg></div>
+          <div class="project-links">
+            <a href="https://github.com/Winnrman" target="_blank" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+          </div>
+        </div>
+        <h3>Through the Static — Post-Apocalyptic Text Adventure</h3>
+        <p>A browser-based text adventure with a VENN raid system, expedition loadout mechanics, and paranoia/screening systems. Refactored from a 5,000-line monolith into 16 clean JS modules.</p>
+        <div class="project-footer">
+          <div class="project-tags"><span class="project-tag">Vanilla JS</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span></div>
+          <span class="project-num">002</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-card-glow"></div>
+        <div class="project-top-line"></div>
+        <div class="project-header">
+          <div class="project-folder"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0.75" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v8.25A2.25 2.25 0 0 0 4.5 16.5h15a2.25 2.25 0 0 0 2.25-2.25V11.25a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z"/></svg></div>
+          <div class="project-links">
+            <a href="https://github.com/Winnrman/Leaflet_v2_beta" target="_blank" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+          </div>
+        </div>
+        <h3>Leaflet — Full-Stack Social Platform</h3>
+        <p>Four years in the making — evolved from a simple blog to a full social suite with friend systems, post reactions, image/video uploads, and a journaling workflow.</p>
+        <div class="project-footer">
+          <div class="project-tags"><span class="project-tag">React</span><span class="project-tag">Node.js</span><span class="project-tag">Firebase</span><span class="project-tag">MongoDB</span></div>
+          <span class="project-num">003</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-d1">
+        <div class="project-card-glow"></div>
+        <div class="project-top-line"></div>
+        <div class="project-header">
+          <div class="project-folder"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0.75" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v8.25A2.25 2.25 0 0 0 4.5 16.5h15a2.25 2.25 0 0 0 2.25-2.25V11.25a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z"/></svg></div>
+          <div class="project-links">
+            <a href="https://github.com/Winnrman/An-Empty-World" target="_blank" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+            <a href="https://winnrman.github.io/An-Empty-World" target="_blank" aria-label="External"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </div>
+        </div>
+        <h3>An Empty World — Browser RPG</h3>
+        <p>An idle/incremental browser RPG with a full combat system, armor mechanics, and progression path. My first openly collaborative project — built with TypeScript and webpack.</p>
+        <div class="project-footer">
+          <div class="project-tags"><span class="project-tag">TypeScript</span><span class="project-tag">Webpack</span></div>
+          <span class="project-num">004</span>
+        </div>
+      </div>
+
     </div>
+  </section>
+
+  <!-- ═══ CONTACT ═══ -->
+  <section id="contact">
+    <div class="contact-inner">
+      <p class="contact-eyebrow reveal">04. What's Next?</p>
+      <h2 class="contact-heading reveal">Get In Touch</h2>
+      <p class="contact-sub reveal">I'm currently open to new opportunities. Whether you have a role in mind, a project to discuss, or just want to connect — my inbox is open.</p>
+      <div class="contact-actions reveal">
+        <a href="/cdn-cgi/l/email-protection#e4858a809681ca8e97878c8b8b8889858aa48389858d88ca878b89" class="contact-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+          Say Hello
+        </a>
+        <a href="./document.pdf" class="contact-btn outline" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>
+          View Resume
+        </a>
+      </div>
+    </div>
+  </section>
+
 </div>
-</div>
+
+<footer>
+  <p>Designed & built by <a href="https://github.com/Winnrman">Andre Schoolman</a></p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ── Animated background orbs on canvas ──
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, orbs;
+
+  function resize() {
+    const dpr = window.devicePixelRatio || 1;
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width  = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width  = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function initOrbs() {
+    orbs = [
+      { x: W*0.78, y: H*0.18, r: W*0.40, dx: 0.14, dy: 0.08,  col: [99,202,183],  a: 0.07 },
+      { x: W*0.18, y: H*0.72, r: W*0.30, dx:-0.10, dy: 0.12,  col: [56,100,210],  a: 0.09 },
+      { x: W*0.50, y: H*0.45, r: W*0.24, dx: 0.08, dy:-0.09,  col: [99,202,183],  a: 0.05 },
+      { x: W*0.88, y: H*0.80, r: W*0.18, dx:-0.06, dy:-0.07,  col: [56,100,210],  a: 0.07 },
+    ];
+  }
+  function drawOrb(o) {
+    const g = ctx.createRadialGradient(o.x,o.y,0, o.x,o.y,o.r);
+    const [r,g2,b] = o.col;
+    g.addColorStop(0,   `rgba(${r},${g2},${b},${o.a})`);
+    g.addColorStop(0.45,`rgba(${r},${g2},${b},${o.a*0.4})`);
+    g.addColorStop(1,   `rgba(${r},${g2},${b},0)`);
+    ctx.beginPath();
+    ctx.arc(o.x,o.y,o.r,0,Math.PI*2);
+    ctx.fillStyle = g; ctx.fill();
+  }
+  function tick() {
+    ctx.clearRect(0,0,W,H);
+    orbs.forEach(o => {
+      o.x+=o.dx; o.y+=o.dy;
+      if(o.x<-o.r||o.x>W+o.r) o.dx*=-1;
+      if(o.y<-o.r||o.y>H+o.r) o.dy*=-1;
+      drawOrb(o);
+    });
+    requestAnimationFrame(tick);
+  }
+  window.addEventListener('resize', ()=>{ resize(); initOrbs(); });
+  resize(); initOrbs(); tick();
+
+  // ── Mouse parallax on orbs ──
+  window.addEventListener('mousemove', e => {
+    const mx = (e.clientX/W - 0.5) * 2;
+    const my = (e.clientY/H - 0.5) * 2;
+    if(orbs) {
+      orbs[0].x += mx * 0.6;
+      orbs[0].y += my * 0.6;
+    }
+  });
+
+  // ── Mobile nav ──
+  const hamburger = document.getElementById('hamburger');
+  const navLinks   = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // ── Scroll reveal ──
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+  // ── Counter animation ──
+  function runCounters() {
+    document.querySelectorAll('.counter').forEach(el => {
+      const target = parseInt(el.dataset.target, 10);
+      let cur = 0;
+      const step = Math.max(1, Math.ceil(target / 30));
+      const t = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = cur;
+        if(cur >= target) clearInterval(t);
+      }, 45);
+    });
+  }
+  const statsEl = document.querySelector('.hero-stats');
+  if(statsEl) {
+    const so = new IntersectionObserver(([e]) => {
+      if(e.isIntersecting){ runCounters(); so.disconnect(); }
+    }, { threshold: 0.5 });
+    so.observe(statsEl);
+  }
+</script>
 
 </body>
 </html>
