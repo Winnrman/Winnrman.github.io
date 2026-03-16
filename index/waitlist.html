@@ -105,9 +105,6 @@
       margin-bottom: 12px;
     }
 
-    /* Recaptcha centering */
-    .g-recaptcha { display: flex; justify-content: center; }
-
     /* Error label */
     .entry__error { font-family: "Inter", sans-serif !important; font-size: 12px !important; }
   </style>
@@ -216,17 +213,8 @@
                   <p class="text-xs text-slate-400 mt-1.5 playfair-display-light">We'll only contact you when Index is ready.</p>
                 </div>
 
-                <!-- Recaptcha -->
-                <div class="mb-5">
-                  <script>
-                    function handleCaptchaResponse() {
-                      var event = new Event('captchaChange');
-                      document.getElementById('sib-captcha').dispatchEvent(event);
-                    }
-                  </script>
-                  <div class="g-recaptcha sib-visible-recaptcha" id="sib-captcha" data-sitekey="6LccuIssAAAAAGJwEn8WedTpClb5RPwnBwocVvGF" data-callback="handleCaptchaResponse" style="direction:ltr"></div>
-                  <label class="entry__error entry__error--primary" style="font-size:12px; font-family: Inter, sans-serif; color:#661d1d; display:block; margin-top:4px;"></label>
-                </div>
+                <!-- Recaptcha v3 (invisible) -->
+                <div class="g-recaptcha-v3" data-sitekey="6LccuIssAAAAAGJwEn8WedTpClb5RPwnBwocVvGF" style="display:none"></div>
 
                 <!-- Submit -->
                 <button
@@ -305,6 +293,6 @@
       var AUTOHIDE = Boolean(0);
     </script>
     <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js?hl=en"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LccuIssAAAAAGJwEn8WedTpClb5RPwnBwocVvGF&hl=en" async defer></script>
   </body>
 </html>
