@@ -291,7 +291,6 @@
                 id="error-message"
                 class="sib-form-message-panel"
                 style="
-                  display: none;
                   font-size: 14px;
                   color: #661d1d;
                   background-color: #ffeded;
@@ -329,7 +328,6 @@
                 id="success-message"
                 class="sib-form-message-panel"
                 style="
-                  display: none;
                   font-size: 14px;
                   color: #085229;
                   background-color: #e7faf0;
@@ -565,5 +563,35 @@
       async
       defer
     ></script>
+
+    <script>
+      // ---- AJAX that handles form submits
+  document.getElementById('sib-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        document.getElementById('success-message').style.display = 'block';
+        document.getElementById('error-message').style.display = 'none';
+        form.reset();
+      } else {
+        document.getElementById('error-message').style.display = 'block';
+        document.getElementById('success-message').style.display = 'none';
+      }
+    } catch {
+      document.getElementById('error-message').style.display = 'block';
+      document.getElementById('success-message').style.display = 'none';
+    }
+  });
+</script>
   </body>
 </html>
