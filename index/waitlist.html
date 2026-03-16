@@ -13,19 +13,49 @@
     />
   </head>
   <style>
-    .inter-700 { font-family: "Inter", sans-serif; font-weight: 700; }
-    .inter-600 { font-family: "Inter", sans-serif; font-weight: 600; }
-    .inter-400 { font-family: "Inter", sans-serif; font-weight: 400; }
-    .cormorant { font-family: "Cormorant", serif; font-weight: 800; }
-    .cormorant-italic { font-family: "Cormorant", serif; font-weight: 800; font-style: italic; }
-    .playfair-display-light { font-family: "Playfair Display", serif; font-weight: 300; }
+    .inter-700 {
+      font-family: "Inter", sans-serif;
+      font-weight: 700;
+    }
+    .inter-600 {
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+    }
+    .inter-400 {
+      font-family: "Inter", sans-serif;
+      font-weight: 400;
+    }
+    .cormorant {
+      font-family: "Cormorant", serif;
+      font-weight: 800;
+    }
+    .cormorant-italic {
+      font-family: "Cormorant", serif;
+      font-weight: 800;
+      font-style: italic;
+    }
+    .playfair-display-light {
+      font-family: "Playfair Display", serif;
+      font-weight: 300;
+    }
 
-    #mobile-menu { display: none; }
-    #mobile-menu.open { display: flex; }
+    #mobile-menu {
+      display: none;
+    }
+    #mobile-menu.open {
+      display: flex;
+    }
 
     /* Brevo overrides — strip all their opinionated styling */
-    .sib-form { background: transparent !important; padding: 0 !important; }
-    .sib-form-container { display: flex; flex-direction: column; align-items: center; }
+    .sib-form {
+      background: transparent !important;
+      padding: 0 !important;
+    }
+    .sib-form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     #sib-container {
       all: unset;
       display: block;
@@ -54,7 +84,9 @@
     #sib-container .entry__field input[type="text"]:focus {
       border-color: #0f766e;
     }
-    #sib-container .entry__field input::placeholder { color: #94a3b8; }
+    #sib-container .entry__field input::placeholder {
+      color: #94a3b8;
+    }
 
     /* Labels */
     #sib-container .entry__label {
@@ -92,8 +124,12 @@
       width: 100% !important;
       justify-content: center !important;
     }
-    .sib-form-block__button:hover { background-color: #1f2937 !important; }
-    .sib-hide-loader-icon { display: none !important; }
+    .sib-form-block__button:hover {
+      background-color: #1f2937 !important;
+    }
+    .sib-hide-loader-icon {
+      display: none !important;
+    }
 
     /* Error / success banners */
     .sib-form-message-panel {
@@ -106,193 +142,428 @@
     }
 
     /* Error label */
-    .entry__error { font-family: "Inter", sans-serif !important; font-size: 12px !important; }
+    .entry__error {
+      font-family: "Inter", sans-serif !important;
+      font-size: 12px !important;
+    }
   </style>
   <body>
     <div class="relative w-screen min-h-screen">
-
       <div class="absolute inset-x-0 top-0 -z-10 h-full bg-slate-100"></div>
 
       <div class="relative z-10">
-
         <!-- ── HEADER ── -->
-        <header class="w-full bg-teal-900 p-3 px-6 flex flex-row items-center justify-between">
-          <a href="/index/" class="font-bold text-white text-2xl sm:text-4xl inter-700 flex flex-row items-center">
+        <header
+          class="w-full bg-teal-900 p-3 px-6 flex flex-row items-center justify-between"
+        >
+          <a
+            href="/index/"
+            class="font-bold text-white text-2xl sm:text-4xl inter-700 flex flex-row items-center"
+          >
             Index
             <span class="cormorant text-sm sm:text-lg pt-1 pl-2 text-slate-300">
               <span class="text-white">|</span> Intelligent file search
             </span>
           </a>
-          <nav class="hidden md:flex flex-row items-center gap-6 font-semibold text-slate-200">
-            <a class="hover:text-white transition-colors" href="/index/about.html">About</a>
-            <a class="hover:text-white transition-colors" href="/index/FAQ.html">FAQs</a>
-            <a class="flex flex-row hover:text-white items-center gap-1 transition-colors" href="/index/waitlist">
+          <nav
+            class="hidden md:flex flex-row items-center gap-6 font-semibold text-slate-200"
+          >
+            <a
+              class="hover:text-white transition-colors"
+              href="/index/about.html"
+              >About</a
+            >
+            <a class="hover:text-white transition-colors" href="/index/FAQ.html"
+              >FAQs</a
+            >
+            <a
+              class="flex flex-row hover:text-white items-center gap-1 transition-colors"
+              href="/index/waitlist"
+            >
               Get Started
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 pt-1">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-5 pt-1"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                />
               </svg>
             </a>
           </nav>
-          <button id="hamburger" class="md:hidden text-white p-1" aria-label="Toggle menu">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          <button
+            id="hamburger"
+            class="md:hidden text-white p-1"
+            aria-label="Toggle menu"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-7"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
             </svg>
           </button>
         </header>
 
-        <div id="mobile-menu" class="flex-col bg-teal-900/95 md:hidden px-6 py-4 gap-4 font-semibold text-slate-200 text-lg">
-          <a class="hover:text-white transition-colors" href="/index/about.html">About</a>
-          <a class="hover:text-white transition-colors" href="/index/FAQ.html">FAQs</a>
-          <a class="flex flex-row items-center gap-1 hover:text-white transition-colors" href="/index/waitlist">
+        <div
+          id="mobile-menu"
+          class="flex-col bg-teal-900/95 md:hidden px-6 py-4 gap-4 font-semibold text-slate-200 text-lg"
+        >
+          <a class="hover:text-white transition-colors" href="/index/about.html"
+            >About</a
+          >
+          <a class="hover:text-white transition-colors" href="/index/FAQ.html"
+            >FAQs</a
+          >
+          <a
+            class="flex flex-row items-center gap-1 hover:text-white transition-colors"
+            href="/index/waitlist"
+          >
             Get Started
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+              />
             </svg>
           </a>
         </div>
 
         <!-- ── HERO ── -->
-        <section class="flex flex-col pt-20 sm:pt-32 w-full text-center items-center select-none px-4 pb-12">
-          <p class="text-teal-300 text-sm inter-600 tracking-widest uppercase mb-4">Early Access</p>
+        <section
+          class="flex flex-col pt-20 sm:pt-32 w-full text-center items-center select-none px-4 pb-12"
+        >
+          <p
+            class="text-teal-300 text-sm inter-600 tracking-widest uppercase mb-4"
+          >
+            Early Access
+          </p>
           <h1 class="text-4xl sm:text-6xl inter-600">Be the first to</h1>
-          <h1 class="text-4xl sm:text-6xl cormorant-italic">find everything.</h1>
-          <p class="text-base sm:text-lg py-4 playfair-display-light max-w-lg text-slate-600">
-            Index is entering alpha. Join the waitlist and we'll let you know the moment it's ready.
+          <h1 class="text-4xl sm:text-6xl cormorant-italic">
+            find everything.
+          </h1>
+          <p
+            class="text-base sm:text-lg py-4 playfair-display-light max-w-lg text-slate-600"
+          >
+            Index is entering alpha. Join the waitlist and we'll let you know
+            the moment it's ready.
           </p>
         </section>
 
         <!-- ── FORM CARD ── -->
         <div class="max-w-md mx-auto px-6 pb-20">
           <div class="bg-white rounded-2xl p-8 sm:p-10 shadow-sm">
-
             <!-- Card header -->
             <div class="mb-6">
-              <h2 class="text-xl inter-600 mb-1">Join the Index Alpha Waitlist</h2>
-              <p class="text-sm text-slate-500 playfair-display-light">Subscribe to get notified when Index enters alpha.</p>
+              <h2 class="text-xl inter-600 mb-1">
+                Join the Index Alpha Waitlist
+              </h2>
+              <p class="text-sm text-slate-500 playfair-display-light">
+                Subscribe to get notified when Index enters alpha.
+              </p>
             </div>
 
-            <!-- Brevo error / success panels (kept functional) -->
-            <div id="error-message" class="sib-form-message-panel hidden" style="font-size:14px; font-family: inherit; color:#661d1d; background-color:#ffeded; border-radius:6px; border: 1px solid #ff4949; padding: 10px 14px; margin-bottom: 12px;">
-              <div class="sib-form-message-panel__text sib-form-message-panel__text--center" style="display:flex; align-items:center; gap: 8px;">
-                <svg viewBox="0 0 512 512" style="width:16px; height:16px; flex-shrink:0; fill:#661d1d;">
-                  <path d="M256 40c118.621 0 216 96.075 216 216 0 119.291-96.61 216-216 216-119.244 0-216-96.562-216-216 0-119.203 96.602-216 216-216m0-32C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm-11.49 120h22.979c6.823 0 12.274 5.682 11.99 12.5l-7 168c-.268 6.428-5.556 11.5-11.99 11.5h-8.979c-6.433 0-11.722-5.073-11.99-11.5l-7-168c-.283-6.818 5.167-12.5 11.99-12.5zM256 340c-15.464 0-28 12.536-28 28s12.536 28 28 28 28-12.536 28-28-12.536-28-28-28z" />
-                </svg>
-                <span>Your submission could not be completed. Please try again.</span>
-              </div>
-            </div>
-
-            <div id="success-message" class="sib-form-message-panel hidden" style="font-size:14px; font-family: inherit; color:#085229; background-color:#e7faf0; border-radius:6px; border: 1px solid #13ce66; padding: 10px 14px; margin-bottom: 12px;">
-              <div class="sib-form-message-panel__text sib-form-message-panel__text--center" style="display:flex; align-items:center; gap: 8px;">
-                <svg viewBox="0 0 512 512" style="width:16px; height:16px; flex-shrink:0; fill:#085229;">
-                  <path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 464c-118.664 0-216-96.055-216-216 0-118.663 96.055-216 216-216 118.664 0 216 96.055 216 216 0 118.663-96.055 216-216 216zm141.63-274.961L217.15 376.071c-4.705 4.667-12.303 4.637-16.97-.068l-85.878-86.572c-4.667-4.705-4.637-12.303.068-16.97l8.52-8.451c4.705-4.667 12.303-4.637 16.97.068l68.976 69.533 163.441-162.13c4.705-4.667 12.303-4.637 16.97.068l8.451 8.52c4.668 4.705 4.637 12.303-.068 16.97z" />
-                </svg>
-                <span>You've been added to the Index alpha waitlist.</span>
-              </div>
-            </div>
-
-            <!-- The actual Brevo form, stripped of all inline styles -->
-            <div id="sib-container">
-              <form id="sib-form" method="POST" action="https://8232f9e3.sibforms.com/serve/MUIFALi5If8_-rs_YQWYEG6dncF1UeiW-dpKSybahmxIigAOIb0jpwzgA6_B4ZSx8Gm6ZgWTQP36o5t5PtM3593YQy8WAIlUKnwMLkabonKzh0UCtXTdMmvcBhU8IE_BTMPwqy-QDVwbVt0XLkOnv-Fjf8dE07hPxn4j85cB-21gE9W2G02Efz10GWuex7GeqNM-AUi8r-6mi2RIxg==" data-type="subscription">
-
-                <!-- Email field -->
-                <div class="mb-4">
-                  <label class="block text-sm inter-600 text-slate-600 mb-1.5" for="EMAIL">
-                    Email address <span class="text-teal-700">*</span>
-                  </label>
-                  <input
-                    class="w-full bg-slate-50 border border-slate-200 focus:border-teal-700 focus:outline-none px-3 py-2.5 text-sm inter-400 text-slate-800 placeholder:text-slate-400 transition-colors"
-                    type="text"
-                    id="EMAIL"
-                    name="EMAIL"
-                    autocomplete="off"
-                    placeholder="you@example.com"
-                    data-required="true"
-                    required
-                  />
-                  <label class="entry__error entry__error--primary" style="font-size:12px; font-family: Inter, sans-serif; color:#661d1d; display:block; margin-top:4px;"></label>
-                  <p class="text-xs text-slate-400 mt-1.5 playfair-display-light">We'll only contact you when Index is ready.</p>
-                </div>
-
-                <!-- Recaptcha v3 (invisible) -->
-                <div class="g-recaptcha-v3" data-sitekey="6LccuIssAAAAAGJwEn8WedTpClb5RPwnBwocVvGF" style="display:none"></div>
-
-                <!-- Submit -->
-                <button
-                  class="sib-form-block__button sib-form-block__button-with-loader w-full flex flex-row items-center justify-center gap-2 bg-black hover:bg-gray-900 hover:cursor-pointer text-sm inter-600 text-white p-3 transition-colors"
-                  form="sib-form"
-                  type="submit"
+            <!-- Brevo requires this exact structure -->
+            <div id="sib-form-container" class="sib-form-container">
+              <div
+                id="error-message"
+                class="sib-form-message-panel"
+                style="
+                  display: none;
+                  font-size: 14px;
+                  color: #661d1d;
+                  background-color: #ffeded;
+                  border-radius: 6px;
+                  border: 1px solid #ff4949;
+                  padding: 10px 14px;
+                  margin-bottom: 12px;
+                "
+              >
+                <div
+                  class="sib-form-message-panel__text sib-form-message-panel__text--center"
+                  style="display: flex; align-items: center; gap: 8px"
                 >
-                  <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512" style="width:16px;height:16px;fill:white;display:none;">
-                    <path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z" />
+                  <svg
+                    viewBox="0 0 512 512"
+                    style="
+                      width: 16px;
+                      height: 16px;
+                      flex-shrink: 0;
+                      fill: #661d1d;
+                    "
+                  >
+                    <path
+                      d="M256 40c118.621 0 216 96.075 216 216 0 119.291-96.61 216-216 216-119.244 0-216-96.562-216-216 0-119.203 96.602-216 216-216m0-32C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm-11.49 120h22.979c6.823 0 12.274 5.682 11.99 12.5l-7 168c-.268 6.428-5.556 11.5-11.99 11.5h-8.979c-6.433 0-11.722-5.073-11.99-11.5l-7-168c-.283-6.818 5.167-12.5 11.99-12.5zM256 340c-15.464 0-28 12.536-28 28s12.536 28 28 28 28-12.536 28-28-12.536-28-28-28z"
+                    />
                   </svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                  </svg>
-                  Join the waitlist
-                </button>
+                  <span
+                    >Your submission could not be completed. Please try
+                    again.</span
+                  >
+                </div>
+              </div>
 
-                <input type="text" name="email_address_check" value="" class="input--hidden" style="display:none;" />
-                <input type="hidden" name="locale" value="en" />
-              </form>
+              <div
+                id="success-message"
+                class="sib-form-message-panel"
+                style="
+                  display: none;
+                  font-size: 14px;
+                  color: #085229;
+                  background-color: #e7faf0;
+                  border-radius: 6px;
+                  border: 1px solid #13ce66;
+                  padding: 10px 14px;
+                  margin-bottom: 12px;
+                "
+              >
+                <div
+                  class="sib-form-message-panel__text sib-form-message-panel__text--center"
+                  style="display: flex; align-items: center; gap: 8px"
+                >
+                  <svg
+                    viewBox="0 0 512 512"
+                    style="
+                      width: 16px;
+                      height: 16px;
+                      flex-shrink: 0;
+                      fill: #085229;
+                    "
+                  >
+                    <path
+                      d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 464c-118.664 0-216-96.055-216-216 0-118.663 96.055-216 216-216 118.664 0 216 96.055 216 216 0 118.663-96.055 216-216 216zm141.63-274.961L217.15 376.071c-4.705 4.667-12.303 4.637-16.97-.068l-85.878-86.572c-4.667-4.705-4.637-12.303.068-16.97l8.52-8.451c4.705-4.667 12.303-4.637 16.97.068l68.976 69.533 163.441-162.13c4.705-4.667 12.303-4.637 16.97.068l8.451 8.52c4.668 4.705 4.637 12.303-.068 16.97z"
+                    />
+                  </svg>
+                  <span>You've been added to the Index alpha waitlist.</span>
+                </div>
+              </div>
+
+              <div id="sib-container">
+                <form
+                  id="sib-form"
+                  method="POST"
+                  action="https://8232f9e3.sibforms.com/serve/MUIFALi5If8_-rs_YQWYEG6dncF1UeiW-dpKSybahmxIigAOIb0jpwzgA6_B4ZSx8Gm6ZgWTQP36o5t5PtM3593YQy8WAIlUKnwMLkabonKzh0UCtXTdMmvcBhU8IE_BTMPwqy-QDVwbVt0XLkOnv-Fjf8dE07hPxn4j85cB-21gE9W2G02Efz10GWuex7GeqNM-AUi8r-6mi2RIxg=="
+                  data-type="subscription"
+                >
+                  <div class="mb-4">
+                    <label
+                      class="block text-sm inter-600 text-slate-600 mb-1.5"
+                      for="EMAIL"
+                    >
+                      Email address <span class="text-teal-700">*</span>
+                    </label>
+                    <input
+                      class="w-full bg-slate-50 border border-slate-200 focus:border-teal-700 focus:outline-none px-3 py-2.5 text-sm inter-400 text-slate-800 placeholder:text-slate-400 transition-colors"
+                      type="text"
+                      id="EMAIL"
+                      name="EMAIL"
+                      autocomplete="off"
+                      placeholder="you@example.com"
+                      data-required="true"
+                      required
+                    />
+                    <label
+                      class="entry__error entry__error--primary"
+                      style="
+                        font-size: 12px;
+                        font-family: Inter, sans-serif;
+                        color: #661d1d;
+                        display: block;
+                        margin-top: 4px;
+                      "
+                    ></label>
+                    <p
+                      class="text-xs text-slate-400 mt-1.5 playfair-display-light"
+                    >
+                      We'll only contact you when Index is ready.
+                    </p>
+                  </div>
+
+                  <div
+                    class="g-recaptcha-v3"
+                    data-sitekey="6LccuIssAAAAAGJwEn8WedTpClb5RPwnBwocVvGF"
+                    style="display: none"
+                  ></div>
+
+                  <button
+                    class="sib-form-block__button sib-form-block__button-with-loader w-full flex flex-row items-center justify-center gap-2 bg-black hover:bg-gray-900 hover:cursor-pointer text-sm inter-600 text-white p-3 transition-colors"
+                    form="sib-form"
+                    type="submit"
+                  >
+                    <svg
+                      class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon"
+                      viewBox="0 0 512 512"
+                      style="
+                        width: 16px;
+                        height: 16px;
+                        fill: white;
+                        display: none;
+                      "
+                    >
+                      <path
+                        d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="size-4"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 4.5v15m7.5-7.5h-15"
+                      />
+                    </svg>
+                    Join the waitlist
+                  </button>
+
+                  <input
+                    type="text"
+                    name="email_address_check"
+                    value=""
+                    class="input--hidden"
+                    style="display: none"
+                  />
+                  <input type="hidden" name="locale" value="en" />
+                </form>
+              </div>
             </div>
 
             <!-- Divider + trust signals -->
-            <div class="mt-6 pt-5 border-t border-slate-100 flex flex-row items-start gap-4">
-              <div class="flex items-center gap-1.5 text-xs text-slate-400 playfair-display-light">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3.5 text-teal-700 flex-shrink-0">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+            <div
+              class="mt-6 pt-5 border-t border-slate-100 flex flex-row items-start gap-4"
+            >
+              <div
+                class="flex items-center gap-1.5 text-xs text-slate-400 playfair-display-light"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-3.5 text-teal-700 flex-shrink-0"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"
+                  />
                 </svg>
                 No spam, ever
               </div>
-              <div class="flex items-center gap-1.5 text-xs text-slate-400 playfair-display-light">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3.5 text-teal-700 flex-shrink-0">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+              <div
+                class="flex items-center gap-1.5 text-xs text-slate-400 playfair-display-light"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-3.5 text-teal-700 flex-shrink-0"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+                  />
                 </svg>
                 First to know when we launch
               </div>
-              <div class="flex items-center gap-1.5 text-xs text-slate-400 playfair-display-light">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3.5 text-teal-700 flex-shrink-0">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z" />
+              <div
+                class="flex items-center gap-1.5 text-xs text-slate-400 playfair-display-light"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-3.5 text-teal-700 flex-shrink-0"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z"
+                  />
                 </svg>
                 Unsubscribe anytime
               </div>
             </div>
-
           </div>
         </div>
 
         <!-- ── FOOTER ── -->
-        <footer class="w-full p-4 bg-white/10 border-t border-white/10 text-center text-xs text-slate-400 py-6">
+        <footer
+          class="w-full p-4 bg-white/10 border-t border-white/10 text-center text-xs text-slate-400 py-6"
+        >
           © 2025 Index. All rights reserved.
         </footer>
-
       </div>
     </div>
 
     <script>
-      const hamburger = document.getElementById('hamburger');
-      const mobileMenu = document.getElementById('mobile-menu');
-      hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+      const hamburger = document.getElementById("hamburger");
+      const mobileMenu = document.getElementById("mobile-menu");
+      hamburger.addEventListener("click", () =>
+        mobileMenu.classList.toggle("open"),
+      );
     </script>
 
     <!-- Brevo scripts (keep functional) -->
     <script>
-      window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
-      window.LOCALE = 'en';
-      window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+      window.REQUIRED_CODE_ERROR_MESSAGE = "Please choose a country code";
+      window.LOCALE = "en";
+      window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE =
+        "The information provided is invalid. Please review the field format and try again.";
       window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank. ";
-      window.GENERIC_INVALID_MESSAGE = "The information provided is invalid. Please review the field format and try again.";
+      window.GENERIC_INVALID_MESSAGE =
+        "The information provided is invalid. Please review the field format and try again.";
       window.translation = {
         common: {
-          selectedList: '{quantity} list selected',
-          selectedLists: '{quantity} lists selected',
-          selectedOption: '{quantity} selected',
-          selectedOptions: '{quantity} selected',
-        }
+          selectedList: "{quantity} list selected",
+          selectedLists: "{quantity} lists selected",
+          selectedOption: "{quantity} selected",
+          selectedOptions: "{quantity} selected",
+        },
       };
       var AUTOHIDE = Boolean(0);
     </script>
-    <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js?render=6LccuIssAAAAAGJwEn8WedTpClb5RPwnBwocVvGF&hl=en" async defer></script>
+    <script
+      defer
+      src="https://sibforms.com/forms/end-form/build/main.js"
+    ></script>
+    <script
+      src="https://www.google.com/recaptcha/api.js?render=6LccuIssAAAAAGJwEn8WedTpClb5RPwnBwocVvGF&hl=en"
+      async
+      defer
+    ></script>
   </body>
 </html>
