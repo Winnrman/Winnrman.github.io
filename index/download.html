@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Download — Index</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    .inter-700 { font-family: "Inter", sans-serif; font-weight: 700; }
+    .inter-600 { font-family: "Inter", sans-serif; font-weight: 600; }
+    .inter-400 { font-family: "Inter", sans-serif; font-weight: 400; }
+    .cormorant { font-family: "Cormorant", serif; font-weight: 800; }
+    .cormorant-italic { font-family: "Cormorant", serif; font-weight: 800; font-style: italic; }
+    .playfair-display-light { font-family: "Playfair Display", serif; font-weight: 300; }
+
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: flex; }
+
+    .download-btn {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+      background: #000;
+      color: #fff;
+      padding: 14px 20px;
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+      width: 100%;
+    }
+    .download-btn:hover { background: #1a1a1a; }
+    .download-btn .btn-label { flex: 1; }
+    .download-btn .btn-sub { font-size: 11px; font-weight: 400; color: #9ca3af; font-family: "Playfair Display", serif; }
+  </style>
+  <body>
+    <div class="relative w-screen min-h-screen">
+      <div class="absolute inset-x-0 top-0 -z-10 h-full bg-slate-100"></div>
+
+      <div class="relative z-10">
+        <!-- ── HEADER ── -->
+        <header class="w-full bg-teal-900 p-3 px-6 flex flex-row items-center justify-between">
+          <a href="/index/" class="font-bold text-white text-2xl sm:text-4xl inter-700 flex flex-row items-center">
+            Index
+            <span class="cormorant text-sm sm:text-lg pt-1 pl-2 text-slate-300">
+              <span class="text-white">|</span> Intelligent file search
+            </span>
+          </a>
+          <nav class="hidden md:flex flex-row items-center gap-6 font-semibold text-slate-200">
+            <a class="hover:text-white transition-colors" href="/index/about.html">About</a>
+            <a class="hover:text-white transition-colors" href="/index/FAQ.html">FAQs</a>
+            <a class="flex flex-row text-white border-b border-white/50 items-center gap-1 transition-colors" href="/index/download.html">
+              Download
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 pt-1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </nav>
+          <button id="hamburger" class="md:hidden text-white p-1" aria-label="Toggle menu">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-7">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          </button>
+        </header>
+
+        <div id="mobile-menu" class="flex-col bg-teal-900/95 md:hidden px-6 py-4 gap-4 font-semibold text-slate-200 text-lg">
+          <a class="hover:text-white transition-colors" href="/index/about.html">About</a>
+          <a class="hover:text-white transition-colors" href="/index/FAQ.html">FAQs</a>
+          <a class="flex flex-row text-white items-center gap-1 transition-colors" href="/index/download.html">
+            Download
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- ── HERO ── -->
+        <section class="flex flex-col pt-20 sm:pt-32 w-full text-center items-center select-none px-4 pb-12">
+          <p class="text-teal-600 text-sm inter-600 tracking-widest uppercase mb-4">v0.7.5</p>
+          <h1 class="text-4xl sm:text-6xl inter-600">It's here.</h1>
+          <h1 class="text-4xl sm:text-6xl cormorant-italic">Download Index.</h1>
+          <p class="text-base sm:text-lg py-4 playfair-display-light max-w-lg text-slate-600">
+            Local-first intelligent file search. Add your folders once — everything becomes searchable, instantly.
+          </p>
+        </section>
+
+        <!-- ── DOWNLOAD CARD ── -->
+        <div class="max-w-2xl mx-auto px-6 pb-20">
+
+          <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+
+            <!-- Card header -->
+            <div class="bg-teal-900 px-8 py-6 flex flex-row items-center justify-between">
+              <div>
+                <p class="text-teal-300 text-xs inter-600 tracking-widest uppercase mb-1">Latest Release</p>
+                <h2 class="text-white text-xl inter-600">Index v0.7.5</h2>
+                <!-- <p class="text-slate-400 text-sm playfair-display-light mt-0.5">First Light</p> -->
+              </div>
+              <div class="text-right">
+                <span class="inline-block bg-teal-700/50 text-teal-200 text-xs inter-600 px-3 py-1 rounded-full tracking-wide">STABLE</span>
+              </div>
+            </div>
+
+            <!-- Download buttons -->
+            <div class="p-8 flex flex-col gap-3">
+
+              <p class="text-xs inter-600 text-slate-400 tracking-widest uppercase mb-1">Choose your platform</p>
+
+              <!-- macOS -->
+              <a
+                href="https://github.com/Winnrman/index/releases/latest/download/Index.dmg"
+                class="download-btn"
+                id="btn-mac"
+              >
+                <!-- Apple icon -->
+                <svg viewBox="0 0 24 24" fill="currentColor" class="size-6 shrink-0 text-slate-300">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                </svg>
+                <div class="btn-label">
+                  <div>macOS</div>
+                  <div class="btn-sub">.dmg · Apple Silicon &amp; Intel</div>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 shrink-0 text-slate-400">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                </svg>
+              </a>
+
+              <!-- Windows -->
+              <a
+                href="https://github.com/Winnrman/index/releases/latest/download/Index-Setup.exe"
+                class="download-btn"
+                id="btn-win"
+              >
+                <!-- Windows icon -->
+                <svg viewBox="0 0 24 24" fill="currentColor" class="size-6 shrink-0 text-slate-300">
+                  <path d="M3 12V6.75l6-1.32v6.57H3zm17 0V4.75l-9 1.61V12h9zm-17 .25h6v6.32L3 17.25V12.25zm17 0h-9v5.89l9 1.61V12.25z"/>
+                </svg>
+                <div class="btn-label">
+                  <div>Windows</div>
+                  <div class="btn-sub">.exe installer · Windows 10 &amp; 11</div>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 shrink-0 text-slate-400">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                </svg>
+              </a>
+
+              <!-- View on GitHub -->
+              <a
+                href="https://github.com/Winnrman/index/releases"
+                target="_blank"
+                rel="noopener"
+                class="flex flex-row items-center justify-center gap-2 border border-slate-200 text-slate-600 hover:text-slate-900 hover:border-slate-400 transition-colors px-5 py-3 text-sm inter-600 mt-1"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" class="size-4 text-slate-500">
+                  <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+                </svg>
+                View all releases on GitHub
+              </a>
+            </div>
+
+            <!-- Trust signals -->
+            <div class="px-8 pb-7 pt-1 border-t border-slate-100 flex flex-row flex-wrap gap-x-6 gap-y-2">
+              <div class="flex items-center gap-1.5 text-xs text-slate-400 playfair-display-light">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3.5 text-teal-700 shrink-0">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+                </svg>
+                100% local — no cloud
+              </div>
+              <div class="flex items-center gap-1.5 text-xs text-slate-400 playfair-display-light">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3.5 text-teal-700 shrink-0">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                </svg>
+                One-time purchase, no subscription
+              </div>
+              <div class="flex items-center gap-1.5 text-xs text-slate-400 playfair-display-light">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3.5 text-teal-700 shrink-0">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
+                </svg>
+                macOS &amp; Windows
+              </div>
+            </div>
+          </div>
+
+          <!-- macOS gatekeeper note -->
+          <div class="mt-6 bg-amber-50 border border-amber-200 rounded-xl px-6 py-4 flex flex-row gap-3 items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 text-amber-600 shrink-0 mt-0.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+            </svg>
+            <div>
+              <p class="text-sm inter-600 text-amber-800 mb-0.5">macOS note</p>
+              <p class="text-xs text-amber-700 playfair-display-light leading-relaxed">
+                On first open, macOS may show a security warning. Right-click the app and choose <strong>Open</strong> to proceed — this is a one-time step for apps downloaded outside the App Store.
+              </p>
+            </div>
+          </div>
+
+          <!-- What's in this release -->
+          <div class="mt-10">
+            <div class="flex flex-row items-center gap-3 mb-6">
+              <span class="cormorant text-2xl text-slate-400">—</span>
+              <h2 class="text-xl inter-600">What's in v0.7.5</h2>
+              <div class="flex-1 h-px bg-slate-200"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+
+              <div class="bg-white rounded-xl p-5 shadow-sm">
+                <h3 class="font-semibold text-sm mb-1">Full-content search</h3>
+                <p class="text-xs text-slate-500 playfair-display-light leading-relaxed">Search inside PDFs, DOCX, XLSX, TXT, Markdown, and every other major file type. If it has text, you can find it.</p>
+              </div>
+
+              <div class="bg-white rounded-xl p-5 shadow-sm">
+                <h3 class="font-semibold text-sm mb-1">Live file watching</h3>
+                <p class="text-xs text-slate-500 playfair-display-light leading-relaxed">New files index automatically. Changes update in real time. You never have to re-add a folder manually.</p>
+              </div>
+
+              <div class="bg-white rounded-xl p-5 shadow-sm">
+                <h3 class="font-semibold text-sm mb-1">Multi-folder support</h3>
+                <p class="text-xs text-slate-500 playfair-display-light leading-relaxed">Add as many folders as you want, across any drive. They're all unified into a single searchable index.</p>
+              </div>
+
+              <div class="bg-white rounded-xl p-5 shadow-sm">
+                <h3 class="font-semibold text-sm mb-1">Entirely local</h3>
+                <p class="text-xs text-slate-500 playfair-display-light leading-relaxed">No cloud. No account. No internet required. Your files and their contents never leave your machine.</p>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Questions CTA -->
+          <div class="text-center mt-14">
+            <p class="text-slate-500 playfair-display-light text-sm">
+              Questions? Check the <a href="/index/FAQ.html" class="text-teal-700 underline underline-offset-2 hover:text-teal-900 transition-colors">FAQs</a> or <a href="mailto:andre.jschoolman@gmail.com" class="text-teal-700 underline underline-offset-2 hover:text-teal-900 transition-colors">get in touch</a>.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- ── FOOTER ── -->
+        <footer class="w-full p-4 bg-white/10 border-t border-white/10 text-center text-xs text-slate-400 py-6">
+          © 2026 Index. All rights reserved.
+        </footer>
+
+      </div>
+    </div>
+
+    <script>
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobile-menu');
+      hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    </script>
+  </body>
+</html>
